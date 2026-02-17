@@ -14,6 +14,7 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     public String register(RegisterRequest request) {
         var user = User.builder()
@@ -24,5 +25,21 @@ public class AuthService {
                 .build();
         userRepository.save(user);
         return "Usuario registrado con éxito";
+    }
+
+    public com.tfm.backend.models.dto.AuthResponse login(com.tfm.backend.models.dto.LoginRequest request) {
+        var user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Credenciales inválidas");
+        }
+
+        var token = jwtService.generateToken(user);
+        return com.tfm.backend.models.dto.AuthResponse.builder()
+                .token(token)
+                .username(user.getUsername())
+                .role(user.getRole())
+                .build();
     }
 }

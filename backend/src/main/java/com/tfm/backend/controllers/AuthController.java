@@ -19,4 +19,10 @@ public class AuthController {
     public String register(@RequestBody RegisterRequest request) {
         return authService.register(request);
     }
+
+    @PostMapping("/login")
+    public org.springframework.http.ResponseEntity<com.tfm.backend.models.dto.AuthResponse> login(
+            @RequestBody com.tfm.backend.models.dto.LoginRequest request) {
+        return org.springframework.http.ResponseEntity.ok(authService.login(request));
+    }
 }
