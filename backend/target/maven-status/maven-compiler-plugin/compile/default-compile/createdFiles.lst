@@ -1,0 +1,9 @@
+com/tfm/backend/models/dto/RegisterRequest.class
+com/tfm/backend/models/User.class
+com/tfm/backend/controllers/AuthController.class
+com/tfm/backend/repositories/UserRepository.class
+com/tfm/backend/TfmApplication.class
+com/tfm/backend/models/User$UserBuilder.class
+com/tfm/backend/config/SecurityConfig.class
+com/tfm/backend/services/AuthService.class
+com/tfm/backend/models/Role.class

@@ -1,0 +1,8 @@
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/config/SecurityConfig.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/TfmApplication.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/controllers/AuthController.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/models/Role.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/models/User.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/models/dto/RegisterRequest.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/repositories/UserRepository.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/services/AuthService.java
