@@ -25,4 +25,11 @@ public class TrainingController {
         TrainingPlan plan = trainingService.generatePlan(userEmail, request);
         return ResponseEntity.ok(plan);
     }
+
+    @org.springframework.web.bind.annotation.GetMapping("/history")
+    public ResponseEntity<java.util.List<TrainingPlan>> getTrainingHistory(Principal principal) {
+        String userEmail = principal.getName();
+        java.util.List<TrainingPlan> history = trainingService.getTrainingHistory(userEmail);
+        return ResponseEntity.ok(history);
+    }
 }
