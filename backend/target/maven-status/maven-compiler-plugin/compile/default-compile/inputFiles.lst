@@ -14,6 +14,7 @@
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/dto/NutritionPlanRequest.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/models/TrainingPlan.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/models/Role.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/config/SwaggerConfig.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/models/dto/RegisterRequest.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/repositories/NutritionPlanRepository.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/controllers/NutritionController.java

@@ -29,7 +29,13 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
+                        // 1. Dejamos entrar a registrarse y loguearse (El vestíbulo)
+                        .requestMatchers("/api/auth/**").permitAll()
+                        // 2. Dejamos ver la página de Swagger (Los planos)
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                        // 3. Dejamos ver los errores para que no queden ocultos por un 403
+                        .requestMatchers("/error").permitAll()
+                        // 4. A todo lo demás (Entrenamientos, Nutrición), le pedimos el Token
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

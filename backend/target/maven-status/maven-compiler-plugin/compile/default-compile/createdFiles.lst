@@ -30,5 +30,6 @@ com/tfm/backend/models/dto/LoginRequest.class
 com/tfm/backend/models/User.class
 com/tfm/backend/repositories/AthleteMetricsRepository.class
 com/tfm/backend/models/User$UserBuilder.class
+com/tfm/backend/config/SwaggerConfig.class
 com/tfm/backend/models/NutritionPlan.class
 com/tfm/backend/models/Role.class
