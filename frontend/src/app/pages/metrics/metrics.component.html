@@ -1,0 +1,76 @@
+<div class="metrics-container">
+    <div class="metrics-card">
+        <div class="card-header">
+            <div class="header-title">
+                <a routerLink="/dashboard" class="btn-back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                    </svg>
+                </a>
+                <h1>Mis Métricas</h1>
+            </div>
+            <p>Actualiza tus datos para personalizar tus planes</p>
+        </div>
+
+        <div *ngIf="isLoading" class="loading-state">
+            <p>Cargando métricas...</p>
+        </div>
+
+        <form *ngIf="!isLoading" [formGroup]="metricsForm" (ngSubmit)="onSubmit()" class="metrics-form">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="weight">Peso (kg) <span class="required">*</span></label>
+                    <input type="number" id="weight" class="form-control" formControlName="weight"
+                        placeholder="Ej: 70.5" step="0.1">
+                </div>
+
+                <div class="form-group">
+                    <label for="height">Altura (cm) <span class="required">*</span></label>
+                    <input type="number" id="height" class="form-control" formControlName="height"
+                        placeholder="Ej: 175">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="restingHeartRate">FC Reposo (bpm) <span class="required">*</span></label>
+                    <input type="number" id="restingHeartRate" class="form-control" formControlName="restingHeartRate"
+                        placeholder="Ej: 50">
+                </div>
+            </div>
+
+            <div class="section-divider">
+                <span>Datos Avanzados (Opcional)</span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="vo2Max">VO2 Max (ml/kg/min)</label>
+                    <input type="number" id="vo2Max" class="form-control" formControlName="vo2Max" placeholder="Ej: 55">
+                </div>
+
+                <div class="form-group">
+                    <label for="ftp">FTP Ciclismo (W)</label>
+                    <input type="number" id="ftp" class="form-control" formControlName="ftp" placeholder="Ej: 250">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary" [disabled]="metricsForm.invalid || isSaving">
+                    {{ isSaving ? 'Guardando...' : 'Guardar Cambios' }}
+                </button>
+            </div>
+
+            <div *ngIf="successMessage" class="alert alert-success">
+                {{ successMessage }}
+            </div>
+
+            <div *ngIf="errorMessage" class="alert alert-danger">
+                {{ errorMessage }}
+            </div>
+        </form>
+    </div>
+</div>

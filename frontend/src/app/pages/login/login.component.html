@@ -1,0 +1,34 @@
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1>EnduranceCoach</h1>
+            <p>Inicia sesión en tu cuenta</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" formControlName="email" placeholder="tu@email.com"
+                    autocomplete="email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" class="form-control" formControlName="password"
+                    placeholder="Tu contraseña" autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="btn-primary" [disabled]="loginForm.invalid || isLoading">
+                {{ isLoading ? 'Iniciando...' : 'Entrar' }}
+            </button>
+
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+        </form>
+
+        <div class="auth-footer">
+            ¿No tienes una cuenta? <a routerLink="/register" class="auth-link">Regístrate aquí</a>
+        </div>
+    </div>
+</div>

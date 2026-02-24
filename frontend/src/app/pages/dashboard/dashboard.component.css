@@ -1,0 +1,226 @@
+.dashboard-container {
+    min-height: 100vh;
+    background-color: #0d0d0d;
+    color: #eeeeee;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Navbar */
+.dashboard-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-text {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.brand-badge {
+    background-color: #fc4c02;
+    /* Sport Orange */
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-greeting {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: 500;
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: #ff4d4d;
+    border: 1px solid rgba(255, 77, 77, 0.3);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+    border-color: #ff4d4d;
+}
+
+/* Content Area */
+.dashboard-content {
+    padding: 40px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.dashboard-header p {
+    margin-top: 8px;
+    color: #888888;
+    font-size: 16px;
+}
+
+/* Cards Grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+/* Base Card Styles */
+.dashboard-card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.metrics-card:hover {
+    border-color: #4facfe;
+}
+
+/* Blue tint */
+.training-card:hover {
+    border-color: #fc4c02;
+}
+
+/* Orange tint */
+.nutrition-card:hover {
+    border-color: #00f2fe;
+}
+
+/* Cyan tint */
+
+.card-icon {
+    margin-bottom: 16px;
+    color: #fc4c02;
+    background-color: rgba(252, 76, 2, 0.1);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.metrics-card .card-icon {
+    color: #4facfe;
+    background-color: rgba(79, 172, 254, 0.1);
+}
+
+.nutrition-card .card-icon {
+    color: #00f2fe;
+    background-color: rgba(0, 242, 254, 0.1);
+}
+
+.card-content {
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.card-content p {
+    margin: 0;
+    color: #a0a0a0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.card-action {
+    margin-top: 24px;
+}
+
+.btn-card {
+    width: 100%;
+    padding: 12px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-card:hover {
+    background-color: #333;
+    border-color: #666;
+}
+
+.metrics-card .btn-card:hover {
+    background-color: #4facfe;
+    border-color: #4facfe;
+    color: #111;
+}
+
+.training-card .btn-card:hover {
+    background-color: #fc4c02;
+    border-color: #fc4c02;
+    color: #fff;
+}
+
+.nutrition-card .btn-card:hover {
+    background-color: #00f2fe;
+    border-color: #00f2fe;
+    color: #111;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-navbar {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+}
