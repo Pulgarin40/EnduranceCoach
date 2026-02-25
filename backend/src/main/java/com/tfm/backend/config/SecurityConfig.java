@@ -19,7 +19,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -42,7 +41,9 @@ public class SecurityConfig {
                         // 3. Dejamos ver los errores para que no queden ocultos por un 403
                         .requestMatchers("/error").permitAll()
                         // 4. A todo lo demás (Entrenamientos, Nutrición), le pedimos el Token
+                        .requestMatchers("/api/**").authenticated()
                         .anyRequest().authenticated())
+
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

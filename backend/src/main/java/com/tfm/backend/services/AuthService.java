@@ -17,8 +17,13 @@ public class AuthService {
     private final JwtService jwtService;
 
     public String register(RegisterRequest request) {
+        String username = request.getUsername();
+        if (username == null || username.isBlank()) {
+            username = request.getEmail();
+        }
+
         var user = User.builder()
-                .username(request.getUsername())
+                .username(username)
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.ATHLETE)

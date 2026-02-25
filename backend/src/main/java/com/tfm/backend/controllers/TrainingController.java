@@ -1,7 +1,6 @@
 package com.tfm.backend.controllers;
 
 import com.tfm.backend.models.TrainingPlan;
-import com.tfm.backend.models.dto.TrainingPlanRequest;
 import com.tfm.backend.services.TrainingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +17,23 @@ import java.security.Principal;
 public class TrainingController {
 
     private final TrainingService trainingService;
+    private final com.tfm.backend.services.AiTrainingService aiTrainingService;
 
     @PostMapping("/generate")
-    public ResponseEntity<TrainingPlan> generatePlan(@RequestBody TrainingPlanRequest request, Principal principal) {
-        String userEmail = principal.getName();
-        TrainingPlan plan = trainingService.generatePlan(userEmail, request);
-        return ResponseEntity.ok(plan);
+    public ResponseEntity<String> generatePlan(@RequestBody com.tfm.backend.dto.TrainingRequest request,
+            org.springframework.security.core.Authentication authentication) {
+        String generatedPlanJson = aiTrainingService.generateTrainingPlan(request);
+        return ResponseEntity.ok()
+                .header("Content-Type", "application/json")
+                .body(generatedPlanJson);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<TrainingPlan> savePlan(@RequestBody com.tfm.backend.models.dto.TrainingPlanRequest request,
+            org.springframework.security.core.Authentication authentication) {
+        String userEmail = authentication.getName();
+        TrainingPlan savedPlan = trainingService.savePlan(userEmail, request);
+        return ResponseEntity.ok(savedPlan);
     }
 
     @org.springframework.web.bind.annotation.GetMapping("/history")

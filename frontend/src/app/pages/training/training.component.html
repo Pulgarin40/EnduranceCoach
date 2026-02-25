@@ -1,0 +1,113 @@
+<div class="training-container">
+    <div class="training-header-nav">
+        <a routerLink="/dashboard" class="btn-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+            Volver al Dashboard
+        </a>
+    </div>
+
+    <div class="training-card">
+        <div class="card-header">
+            <h1>Generador de Plan de Entrenamiento con IA</h1>
+            <p>Configura tu próximo objetivo deportivo</p>
+        </div>
+
+        <!-- Formulario -->
+        <form [formGroup]="trainingForm" (ngSubmit)="onSubmit()" class="training-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="goal">Objetivo <span class="required">*</span></label>
+                    <select id="goal" formControlName="goal" class="form-control">
+                        <option value="" disabled selected>Selecciona una disciplina...</option>
+                        <option value="Trailrunning">Trail running</option>
+                        <option value="Maratón">Maratón</option>
+                        <option value="Media Maratón">Media Maratón</option>
+                        <option value="10K">10K</option>
+                        <option value="Ironman">Triatlón Ironman (Larga Distancia)</option>
+                        <option value="Half">Triatlón Half (Media Distancia)</option>
+                        <option value="Spring">Triatlón Sprint</option>
+                        <option value="Carreras de Ciclismo y Btt">Carreras Ciclismo o MTB</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="distance">Distancia o Meta <span class="required">*</span></label>
+                    <input type="text" id="distance" formControlName="distance" class="form-control"
+                        placeholder="Ej: 50km, Sub-3h">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="weeks">Semanas de preparación <span class="required">*</span></label>
+                    <input type="number" id="weeks" formControlName="weeks" class="form-control" placeholder="Ej: 12"
+                        min="4" max="24">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary" [disabled]="trainingForm.invalid || isLoading">
+                    {{ isLoading ? 'La IA está pensando...' : 'Generar Plan de Entrenamiento' }}
+                </button>
+            </div>
+
+            @if (errorMessage) {
+            <div class="alert alert-danger">
+                {{ errorMessage }}
+            </div>
+            }
+        </form>
+    </div>
+
+    <!-- Contenedor del Plan Generado -->
+    <div class="plan-results">
+        @if (isLoading) {
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Generando plan adaptado a tu fisiología de resistencia...</p>
+        </div>
+        }
+
+        @if (generatedPlan && !isLoading) {
+        <div class="plan-card">
+            <div class="plan-header">
+                <h2>Mi Plan de Entrenamiento ({{ generatedPlan.duracion_semanas }} semanas)</h2>
+                <span class="badge-pro">AI Generated</span>
+            </div>
+            <div class="plan-content">
+                @for (week of generatedPlan.semanas; track week.semana) {
+                <div class="week-container">
+                    <h3 class="week-title">Semana {{ week.semana }}</h3>
+                    <div class="workouts-grid">
+                        @for (workout of week.entrenamientos; track workout.dia) {
+                        <div class="workout-card">
+                            <div class="workout-day">Día {{ workout.dia }}</div>
+                            <div class="workout-desc">{{ workout.descripcion }}</div>
+                        </div>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Botón de Guardar Plan -->
+        <div class="save-action-container">
+            @if (!planSaved) {
+            <button class="btn-save" (click)="saveGeneratedPlan()" [disabled]="isSavingPlan">
+                {{ isSavingPlan ? 'Guardando...' : '💾 Guardar este Plan en mi Perfil' }}
+            </button>
+            }
+
+            @if (planSaved) {
+            <div class="alert alert-success">
+                ✅ ¡Plan guardado exitosamente en tu perfil!
+            </div>
+            }
+        </div>
+        }
+    </div>
+</div>

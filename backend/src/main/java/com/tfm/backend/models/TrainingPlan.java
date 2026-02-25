@@ -28,11 +28,15 @@ public class TrainingPlan {
     @Column(nullable = false)
     private String goal;
 
-    @Column(nullable = false)
-    private String currentFitnessLevel;
+    @Column
+    private String distance;
 
+    @Column
+    private Integer weeks;
+
+    @Lob
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String generatedPlan;
+    private String planData;
 
     @CreationTimestamp
     @Column(updatable = false)

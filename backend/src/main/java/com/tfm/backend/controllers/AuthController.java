@@ -19,8 +19,8 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequest request) {
-        return authService.register(request);
+    public ResponseEntity<java.util.Map<String, String>> register(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(java.util.Collections.singletonMap("message", authService.register(request)));
     }
 
     @PostMapping("/login")

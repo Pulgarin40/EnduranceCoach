@@ -18,22 +18,16 @@ public class TrainingService {
         private final UserRepository userRepository;
         private final ChatModel chatModel;
 
-        public TrainingPlan generatePlan(String userEmail, TrainingPlanRequest request) {
+        public TrainingPlan savePlan(String userEmail, TrainingPlanRequest request) {
                 User user = userRepository.findByEmail(userEmail)
                                 .orElseThrow(() -> new RuntimeException("User not found"));
-
-                String prompt = String.format(
-                                "Actúa como un entrenador personal de élite. Crea un plan de entrenamiento detallado para un atleta cuyo objetivo es: %s, y su nivel de forma actual es: %s. Devuelve solo el plan en formato Markdown.",
-                                request.getGoal(),
-                                request.getCurrentFitnessLevel());
-
-                String generatedPlanContent = chatModel.call(prompt);
 
                 TrainingPlan trainingPlan = TrainingPlan.builder()
                                 .athlete(user)
                                 .goal(request.getGoal())
-                                .currentFitnessLevel(request.getCurrentFitnessLevel())
-                                .generatedPlan(generatedPlanContent)
+                                .distance(request.getDistance())
+                                .weeks(request.getWeeks())
+                                .planData(request.getPlanData())
                                 .build();
 
                 return trainingPlanRepository.save(trainingPlan);
