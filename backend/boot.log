@@ -1,0 +1,71 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------------< com.tfm:backend >---------------------------
+[INFO] Building backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.3:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] skip non existing resourceDirectory /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ backend ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.3:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.3:run (default-cli) @ backend ---
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-buildpack-platform/3.2.3/spring-boot-buildpack-platform-3.2.3.pom
+Progress (1): 971 BProgress (1): 2.9 kBProgress (1): 3.2 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-buildpack-platform/3.2.3/spring-boot-buildpack-platform-3.2.3.pom (3.2 kB at 9.4 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/3.2.3/spring-boot-loader-tools-3.2.3.pom
+Progress (1): 1.0 kBProgress (1): 2.2 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/3.2.3/spring-boot-loader-tools-3.2.3.pom (2.2 kB at 52 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-buildpack-platform/3.2.3/spring-boot-buildpack-platform-3.2.3.jar
+Progress (1): 0.9/272 kBProgress (1): 2.3/272 kBProgress (1): 3.7/272 kBProgress (1): 5.0/272 kBProgress (1): 6.4/272 kBProgress (1): 7.8/272 kBProgress (1): 8.2/272 kBProgress (1): 9.6/272 kBProgress (1): 11/272 kB Progress (1): 12/272 kBProgress (1): 14/272 kBProgress (1): 15/272 kBProgress (1): 16/272 kBProgress (1): 18/272 kBProgress (1): 19/272 kBProgress (1): 21/272 kBProgress (1): 22/272 kBProgress (1): 23/272 kBProgress (1): 25/272 kBProgress (1): 26/272 kBProgress (1): 27/272 kBProgress (1): 29/272 kBProgress (1): 30/272 kBProgress (1): 31/272 kBProgress (1): 33/272 kBProgress (1): 34/272 kBProgress (1): 36/272 kBProgress (1): 37/272 kBProgress (1): 38/272 kBProgress (1): 40/272 kBProgress (1): 41/272 kBProgress (1): 42/272 kBProgress (1): 44/272 kBProgress (1): 45/272 kBProgress (1): 47/272 kBProgress (1): 48/272 kBProgress (1): 49/272 kBProgress (1): 53/272 kBProgress (1): 58/272 kBProgress (1): 62/272 kBProgress (1): 66/272 kBProgress (1): 70/272 kBProgress (1): 74/272 kBProgress (1): 78/272 kBProgress (1): 82/272 kBProgress (1): 86/272 kBProgress (1): 90/272 kBProgress (1): 95/272 kBProgress (1): 99/272 kBProgress (1): 103/272 kBProgress (1): 107/272 kBProgress (1): 112/272 kBProgress (1): 116/272 kBProgress (1): 120/272 kBProgress (1): 124/272 kBProgress (1): 128/272 kBProgress (1): 131/272 kBProgress (1): 135/272 kBProgress (1): 140/272 kBProgress (1): 144/272 kBProgress (1): 148/272 kBProgress (1): 152/272 kBProgress (1): 156/272 kBProgress (1): 161/272 kBProgress (1): 165/272 kBProgress (1): 169/272 kBProgress (1): 173/272 kBProgress (1): 178/272 kBProgress (1): 182/272 kBProgress (1): 186/272 kBProgress (1): 190/272 kBProgress (1): 195/272 kBProgress (1): 199/272 kBProgress (1): 203/272 kBProgress (1): 207/272 kBProgress (1): 211/272 kBProgress (1): 216/272 kBProgress (1): 232/272 kBProgress (1): 248/272 kBProgress (1): 262/272 kBProgress (1): 272 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-buildpack-platform/3.2.3/spring-boot-buildpack-platform-3.2.3.jar (272 kB at 2.3 MB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/3.2.3/spring-boot-loader-tools-3.2.3.jar
+Progress (1): 7.7/434 kBProgress (1): 12/434 kB Progress (1): 29/434 kBProgress (1): 45/434 kBProgress (1): 61/434 kBProgress (1): 78/434 kBProgress (1): 94/434 kBProgress (1): 111/434 kBProgress (1): 127/434 kBProgress (1): 143/434 kBProgress (1): 160/434 kBProgress (1): 176/434 kBProgress (1): 193/434 kBProgress (1): 209/434 kBProgress (1): 225/434 kBProgress (1): 242/434 kBProgress (1): 258/434 kBProgress (1): 274/434 kBProgress (1): 291/434 kBProgress (1): 307/434 kBProgress (1): 324/434 kBProgress (1): 340/434 kBProgress (1): 356/434 kBProgress (1): 373/434 kBProgress (1): 389/434 kBProgress (1): 406/434 kBProgress (1): 422/434 kBProgress (1): 434 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/3.2.3/spring-boot-loader-tools-3.2.3.jar (434 kB at 5.8 MB/s)
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.3)
+
+2026-02-25T18:03:06.793+01:00  INFO 403268 --- [backend] [           main] com.tfm.backend.TfmApplication           : Starting TfmApplication using Java 21.0.10 with PID 403268 (/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/target/classes started by jberpu in /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend)
+2026-02-25T18:03:06.796+01:00  INFO 403268 --- [backend] [           main] com.tfm.backend.TfmApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-02-25T18:03:07.646+01:00  INFO 403268 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-25T18:03:07.762+01:00  INFO 403268 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 110 ms. Found 4 JPA repository interfaces.
+2026-02-25T18:03:08.167+01:00  INFO 403268 --- [backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-25T18:03:08.177+01:00  INFO 403268 --- [backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-25T18:03:08.177+01:00  INFO 403268 --- [backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2026-02-25T18:03:08.221+01:00  INFO 403268 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-25T18:03:08.222+01:00  INFO 403268 --- [backend] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1256 ms
+2026-02-25T18:03:08.338+01:00  INFO 403268 --- [backend] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-25T18:03:08.378+01:00  INFO 403268 --- [backend] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-02-25T18:03:08.401+01:00  INFO 403268 --- [backend] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-25T18:03:08.554+01:00  INFO 403268 --- [backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-25T18:03:08.572+01:00  INFO 403268 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-25T18:03:08.688+01:00  INFO 403268 --- [backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@fbbd90c
+2026-02-25T18:03:08.689+01:00  INFO 403268 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-25T18:03:08.711+01:00  WARN 403268 --- [backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-25T18:03:09.368+01:00  INFO 403268 --- [backend] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-25T18:03:09.457+01:00  INFO 403268 --- [backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T18:03:10.164+01:00  WARN 403268 --- [backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-25T18:03:10.176+01:00 TRACE 403268 --- [backend] [           main] eGlobalAuthenticationAutowiredConfigurer : Eagerly initializing {securityConfig=com.tfm.backend.config.SecurityConfig$$SpringCGLIB$$0@5625e7e1}
+2026-02-25T18:03:10.339+01:00  INFO 403268 --- [backend] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2a20332b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2cf6b6e6, org.springframework.security.web.context.SecurityContextHolderFilter@4f45290f, org.springframework.security.web.header.HeaderWriterFilter@6bf27411, org.springframework.web.filter.CorsFilter@6a16ee0d, org.springframework.security.web.authentication.logout.LogoutFilter@6f78c132, com.tfm.backend.security.JwtAuthenticationFilter@6e3acd7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54632794, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@56511eda, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1444e35f, org.springframework.security.web.session.SessionManagementFilter@7f680a9a, org.springframework.security.web.access.ExceptionTranslationFilter@1dd01876, org.springframework.security.web.access.intercept.AuthorizationFilter@12128849]
+2026-02-25T18:03:10.637+01:00  INFO 403268 --- [backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-25T18:03:10.646+01:00  INFO 403268 --- [backend] [           main] com.tfm.backend.TfmApplication           : Started TfmApplication in 4.153 seconds (process running for 4.418)
+2026-02-25T18:03:12.682+01:00  INFO 403268 --- [backend] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T18:03:12.684+01:00  INFO 403268 --- [backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-25T18:03:12.688+01:00  INFO 403268 --- [backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
