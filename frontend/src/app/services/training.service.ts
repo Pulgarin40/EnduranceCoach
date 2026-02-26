@@ -21,4 +21,8 @@ export class TrainingService {
     getMyPlans(): Observable<any[]> {
         return this.http.get<any[]>('http://localhost:8080/api/training/my-plans');
     }
+
+    deletePlan(id: number): Observable<void> {
+        return this.http.delete<void>(`http://localhost:8080/api/training/${id}`);
+    }
 }

@@ -38,4 +38,15 @@ public class TrainingService {
                                 .orElseThrow(() -> new RuntimeException("User not found"));
                 return trainingPlanRepository.findByAthleteId(user.getId());
         }
+
+        public void deletePlan(Long planId, String userEmail) {
+                TrainingPlan plan = trainingPlanRepository.findById(planId)
+                                .orElseThrow(() -> new RuntimeException("Training plan not found"));
+
+                if (!plan.getAthlete().getEmail().equals(userEmail)) {
+                        throw new RuntimeException("Access denied: You are not the owner of this plan");
+                }
+
+                trainingPlanRepository.delete(plan);
+        }
 }

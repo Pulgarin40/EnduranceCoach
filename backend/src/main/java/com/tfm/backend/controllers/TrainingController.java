@@ -52,4 +52,12 @@ public class TrainingController {
         java.util.List<TrainingPlan> plans = trainingPlanRepository.findByAthleteEmailOrderByCreatedAtDesc(email);
         return ResponseEntity.ok(plans);
     }
+
+    @org.springframework.web.bind.annotation.DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePlan(@org.springframework.web.bind.annotation.PathVariable Long id,
+            org.springframework.security.core.Authentication authentication) {
+        String userEmail = authentication.getName();
+        trainingService.deletePlan(id, userEmail);
+        return ResponseEntity.noContent().build();
+    }
 }

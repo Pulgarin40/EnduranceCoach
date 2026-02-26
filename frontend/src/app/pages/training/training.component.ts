@@ -98,6 +98,22 @@ export class TrainingComponent implements OnInit {
         }
     }
 
+    onDeletePlan(id: number): void {
+        if (window.confirm('¿Estás seguro de que quieres eliminar este plan de entrenamiento?')) {
+            this.trainingService.deletePlan(id).subscribe({
+                next: () => {
+                    this.savedPlans = this.savedPlans.filter(p => p.id !== id);
+                    this.cdr.detectChanges();
+                },
+                error: (err) => {
+                    console.error('Error eliminando el plan:', err);
+                    this.errorMessage = 'Hubo un error al eliminar el plan.';
+                    this.cdr.detectChanges();
+                }
+            });
+        }
+    }
+
     onSubmit() {
         if (this.trainingForm.invalid || !isPlatformBrowser(this.platformId)) {
             return;

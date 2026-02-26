@@ -362,3 +362,40 @@ select.form-control option {
     text-align: center;
     width: 100%;
 }
+
+/* Action Buttons in Plan Card */
+.plan-actions-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.btn-details {
+    width: 100%;
+    white-space: nowrap;
+}
+
+/* Delete button styling */
+.btn-delete-subtle {
+    background: transparent;
+    color: #888;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    min-height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.btn-delete-subtle:hover {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border-color: rgba(220, 53, 69, 0.3);
+    transform: scale(1.05);
+}
