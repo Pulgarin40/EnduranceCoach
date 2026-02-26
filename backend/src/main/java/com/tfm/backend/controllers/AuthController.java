@@ -19,8 +19,9 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<java.util.Map<String, String>> register(@RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(java.util.Collections.singletonMap("message", authService.register(request)));
+    public org.springframework.http.ResponseEntity<com.tfm.backend.models.dto.AuthResponse> register(
+            @RequestBody RegisterRequest request) {
+        return org.springframework.http.ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")

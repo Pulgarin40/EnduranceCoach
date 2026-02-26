@@ -110,4 +110,84 @@
         </div>
         }
     </div>
+
+    <!-- Sección de Planes Guardados -->
+    <div class="saved-plans-section" style="margin-top: 2rem;">
+        <div class="card-header">
+            <h2>Mis Planes Guardados</h2>
+            <p>Historial de entrenamientos generados</p>
+        </div>
+
+        @if (isLoadingSavedPlans) {
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Cargando tus planes...</p>
+        </div>
+        }
+
+        @if (!isLoadingSavedPlans && savedPlansError) {
+        <div class="alert alert-danger">
+            {{ savedPlansError }}
+        </div>
+        }
+
+        @if (!isLoadingSavedPlans && !savedPlansError && savedPlans.length === 0) {
+        <div class="alert alert-info"
+            style="background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1);">
+            Aún no tienes planes de entrenamiento guardados. ¡Genera uno y guárdalo en tu perfil!
+        </div>
+        }
+
+        @if (!isLoadingSavedPlans && savedPlans.length > 0) {
+        <div class="saved-plans-grid" style="display: flex; flex-direction: column; gap: 1rem;">
+            @for (plan of savedPlans; track plan.id) {
+            <div class="saved-plan-card"
+                style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1.5rem;">
+                <div class="plan-header"
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <h3 style="margin: 0; color: #ff5722; font-size: 1.2rem;">{{ plan.goal }}</h3>
+                        <p style="margin: 0.2rem 0 0 0; color: #aaa; font-size: 0.9rem;">
+                            Distancia: {{ plan.distance }} | {{ plan.weeks }} semanas
+                        </p>
+                        <p style="margin: 0; color: #888; font-size: 0.8rem;">
+                            Creado el: {{ plan.createdAt | date:'dd/MM/yyyy HH:mm' }}
+                        </p>
+                    </div>
+                    <button class="btn-secondary" (click)="togglePlanDetails(plan)"
+                        style="background: rgba(255, 87, 34, 0.1); color: #ff5722; border: 1px solid rgba(255, 87, 34, 0.3); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; transition: all 0.2s;">
+                        {{ plan.showDetails ? 'Ocultar detalles' : 'Ver detalles' }}
+                    </button>
+                </div>
+
+                @if (plan.showDetails && plan.parsedData) {
+                <div class="plan-details mt-3"
+                    style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                    @for (week of plan.parsedData.semanas || plan.parsedData.plan_entrenamiento?.semanas; track
+                    week.semana) {
+                    <div class="week-container"
+                        style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                        <h4 style="margin-top: 0; color: #fff;">Semana {{ week.semana }}</h4>
+                        <div class="workouts-grid"
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+                            @for (workout of week.entrenamientos; track workout.dia) {
+                            <div class="workout-card"
+                                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 0.8rem;">
+                                <div class="workout-day"
+                                    style="font-weight: bold; color: #ff5722; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                    Día {{ workout.dia }}</div>
+                                <div class="workout-desc" style="font-size: 0.85rem; color: #ddd; line-height: 1.4;">{{
+                                    workout.descripcion }}</div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+            }
+        </div>
+        }
+    </div>
 </div>

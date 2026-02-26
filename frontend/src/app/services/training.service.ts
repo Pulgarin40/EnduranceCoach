@@ -17,4 +17,8 @@ export class TrainingService {
     savePlan(planPayload: any): Observable<any> {
         return this.http.post<any>('http://localhost:8080/api/training/save', planPayload);
     }
+
+    getMyPlans(): Observable<any[]> {
+        return this.http.get<any[]>('http://localhost:8080/api/training/my-plans');
+    }
 }

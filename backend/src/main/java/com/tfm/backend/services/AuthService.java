@@ -16,10 +16,10 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
-    public String register(RegisterRequest request) {
+    public com.tfm.backend.models.dto.AuthResponse register(RegisterRequest request) {
         String username = request.getUsername();
         if (username == null || username.isBlank()) {
-            username = request.getEmail();
+            username = request.getEmail().split("@")[0];
         }
 
         var user = User.builder()
@@ -29,7 +29,13 @@ public class AuthService {
                 .role(Role.ATHLETE)
                 .build();
         userRepository.save(user);
-        return "Usuario registrado con éxito";
+
+        var token = jwtService.generateToken(user);
+        return com.tfm.backend.models.dto.AuthResponse.builder()
+                .token(token)
+                .username(user.getUsername())
+                .role(user.getRole())
+                .build();
     }
 
     public com.tfm.backend.models.dto.AuthResponse login(com.tfm.backend.models.dto.LoginRequest request) {

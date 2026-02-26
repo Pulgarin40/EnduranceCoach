@@ -1,0 +1,4 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   271    0   218  100    53    660    160 --:--:-- --:--:-- --:--:--   823
+{"token":"eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQVRITEVURSIsInN1YiI6Im15dGVzdDVAdGVzdC5jb20iLCJpYXQiOjE3NzIxMjk4MzMsImV4cCI6MTc3MjIxNjIzM30.Q7bNmMUruuiXs9M-BrmQDj9XpfKBcHMmR7-8aLo-4JM","username":"mytest5","role":"ATHLETE"}

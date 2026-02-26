@@ -1,4 +1,4 @@
-import { Component, inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, PLATFORM_ID, ChangeDetectorRef, OnInit } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -32,7 +32,7 @@ export interface TrainingResponse {
     templateUrl: './training.component.html',
     styleUrls: ['./training.component.css']
 })
-export class TrainingComponent {
+export class TrainingComponent implements OnInit {
     private fb = inject(FormBuilder);
     private trainingService = inject(TrainingService);
     private platformId = inject(PLATFORM_ID);
@@ -49,6 +49,54 @@ export class TrainingComponent {
     errorMessage = '';
     planSaved = false;
     isSavingPlan = false;
+
+    savedPlans: any[] = [];
+    isLoadingSavedPlans = false;
+    savedPlansError = '';
+
+    ngOnInit(): void {
+        this.loadSavedPlans();
+    }
+
+    loadSavedPlans(): void {
+        if (!isPlatformBrowser(this.platformId)) return;
+
+        this.isLoadingSavedPlans = true;
+        this.savedPlansError = '';
+        this.cdr.detectChanges();
+
+        this.trainingService.getMyPlans()
+            .pipe(
+                finalize(() => {
+                    this.isLoadingSavedPlans = false;
+                    this.cdr.detectChanges();
+                })
+            )
+            .subscribe({
+                next: (plans) => {
+                    this.savedPlans = plans.map(plan => {
+                        return {
+                            ...plan,
+                            parsedData: typeof plan.planData === 'string' ? JSON.parse(plan.planData) : plan.planData,
+                            showDetails: false
+                        };
+                    });
+                    this.cdr.detectChanges();
+                },
+                error: (err) => {
+                    console.error('Error cargando planes guardados:', err);
+                    this.savedPlansError = 'No se pudieron cargar tus planes guardados.';
+                    this.cdr.detectChanges();
+                }
+            });
+    }
+
+    togglePlanDetails(plan: any): void {
+        plan.showDetails = !plan.showDetails;
+        if (plan.showDetails) {
+            console.log('Plan parseado:', plan.parsedData);
+        }
+    }
 
     onSubmit() {
         if (this.trainingForm.invalid || !isPlatformBrowser(this.platformId)) {

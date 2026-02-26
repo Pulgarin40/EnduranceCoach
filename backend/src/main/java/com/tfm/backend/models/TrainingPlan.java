@@ -21,6 +21,7 @@ public class TrainingPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User athlete;
@@ -34,7 +35,6 @@ public class TrainingPlan {
     @Column
     private Integer weeks;
 
-    @Lob
     @Column(columnDefinition = "TEXT", nullable = false)
     private String planData;
 

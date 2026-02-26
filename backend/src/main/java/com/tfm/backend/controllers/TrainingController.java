@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 
@@ -18,6 +19,7 @@ public class TrainingController {
 
     private final TrainingService trainingService;
     private final com.tfm.backend.services.AiTrainingService aiTrainingService;
+    private final com.tfm.backend.repositories.TrainingPlanRepository trainingPlanRepository;
 
     @PostMapping("/generate")
     public ResponseEntity<String> generatePlan(@RequestBody com.tfm.backend.dto.TrainingRequest request,
@@ -41,5 +43,13 @@ public class TrainingController {
         String userEmail = principal.getName();
         java.util.List<TrainingPlan> history = trainingService.getTrainingHistory(userEmail);
         return ResponseEntity.ok(history);
+    }
+
+    @Transactional(readOnly = true)
+    @org.springframework.web.bind.annotation.GetMapping("/my-plans")
+    public ResponseEntity<java.util.List<TrainingPlan>> getMyPlans(Principal principal) {
+        String email = principal.getName();
+        java.util.List<TrainingPlan> plans = trainingPlanRepository.findByAthleteEmailOrderByCreatedAtDesc(email);
+        return ResponseEntity.ok(plans);
     }
 }
