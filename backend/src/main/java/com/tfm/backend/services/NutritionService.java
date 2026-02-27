@@ -1,6 +1,6 @@
 package com.tfm.backend.services;
 
-import com.tfm.backend.dto.NutritionPlanRequest;
+import com.tfm.backend.dto.NutritionRequest;
 import com.tfm.backend.models.NutritionPlan;
 import com.tfm.backend.models.User;
 import com.tfm.backend.repositories.NutritionPlanRepository;
@@ -19,35 +19,47 @@ public class NutritionService {
         private final UserRepository userRepository;
         private final NutritionPlanRepository nutritionPlanRepository;
 
-        public NutritionPlan generateNutritionPlan(String userEmail, NutritionPlanRequest request) {
+        public NutritionPlan generateNutritionPlan(String userEmail, NutritionRequest request) {
                 User user = userRepository.findByEmail(userEmail)
                                 .orElseThrow(() -> new RuntimeException("User not found"));
 
                 String prompt = String.format(
-                                "Actúa como un nutricionista experto en deportes de resistencia. " +
-                                                "Tengo un atleta que va a participar en una prueba de tipo: %s. " +
-                                                "Su preferencia alimenticia es: %s. " +
-                                                "Genera un plan detallado de carga de carbohidratos (días previos), " +
-                                                "estrategias de hidratación, y pauta de consumo de geles/hora durante la carrera. "
+                                "Eres un nutricionista deportivo de élite. Calcula la estrategia para un atleta de %.1f kg que va a competir en %s.\n"
                                                 +
-                                                "Presenta la respuesta en formato de texto claro a modo de informe.",
-                                request.getRaceType(), request.getDietPreference());
+                                                "REGLAS MATEMÁTICAS ESTRICTAS:\n\n" +
+                                                "Carga previa: Multiplica el peso por 8g para dar el total de HC diarios.\n\n"
+                                                +
+                                                "Desayuno pre-carrera: Multiplica el peso por 2g de HC.\n\n" +
+                                                "Carrera: Exige entre 60g y 90g de HC por hora, e indica 500mg de sodio por hora.\n\n"
+                                                +
+                                                "Devuelve ÚNICAMENTE este JSON, sustituyendo los valores por tus cálculos exactos y detallados. NO anides objetos, usa solo texto plano en los valores:\n"
+                                                +
+                                                "{\n" +
+                                                "\"cargaHidratos\": {\n" +
+                                                "\"diasPrevios\": \"...\",\n" +
+                                                "\"alimentos\": \"...\",\n" +
+                                                "\"cantidad\": \"[Cálculo matemático exacto] g/día\"\n" +
+                                                "},\n" +
+                                                "\"preCarrera\": {\n" +
+                                                "\"alimentos\": \"...\",\n" +
+                                                "\"cantidad\": \"[Cálculo matemático exacto] g totales\"\n" +
+                                                "},\n" +
+                                                "\"estrategiaCarrera\": {\n" +
+                                                "\"HCporHora\": \"...\",\n" +
+                                                "\"tipoSales\": \"...\",\n" +
+                                                "\"pauta\": \"...\"\n" +
+                                                "}\n" +
+                                                "}",
+                                request.getWeight(), request.getGoal());
 
                 String generatedPlan = chatModel.call(prompt);
 
                 NutritionPlan plan = NutritionPlan.builder()
                                 .athlete(user)
-                                .raceType(request.getRaceType())
-                                .targetCalories(0) // Valores aproximados por ahora
-                                .carbsGrams(0)
-                                .proteinGrams(0)
-                                .fatGrams(0)
-                                .hydrationLiters(0.0)
-                                .generatedPlan(generatedPlan)
+                                .weight(request.getWeight())
+                                .goal(request.getGoal())
+                                .strategyData(generatedPlan)
                                 .build();
-
-                // El createdAt se persistirá automáticamente gracias a @PrePersist en la
-                // entidad.
 
                 return nutritionPlanRepository.save(plan);
         }

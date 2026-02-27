@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NutritionPlanRequest {
-    private String raceType;
-    private String dietPreference;
+public class NutritionRequest {
+    private Double weight;
+    private String goal;
 }

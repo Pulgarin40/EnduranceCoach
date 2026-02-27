@@ -1,6 +1,6 @@
 package com.tfm.backend.controllers;
 
-import com.tfm.backend.dto.NutritionPlanRequest;
+import com.tfm.backend.dto.NutritionRequest;
 import com.tfm.backend.models.NutritionPlan;
 import com.tfm.backend.services.NutritionService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class NutritionController {
     private final NutritionService nutritionService;
 
     @PostMapping("/generate")
-    public ResponseEntity<NutritionPlan> generatePlan(@RequestBody NutritionPlanRequest request, Principal principal) {
+    public ResponseEntity<NutritionPlan> generatePlan(@RequestBody NutritionRequest request, Principal principal) {
         NutritionPlan plan = nutritionService.generateNutritionPlan(principal.getName(), request);
         return ResponseEntity.ok(plan);
     }

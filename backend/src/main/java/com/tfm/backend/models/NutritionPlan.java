@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "nutrition_plans")
@@ -20,24 +21,17 @@ public class NutritionPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "athlete_id")
-    private User athlete;
+    private Double weight;
 
-    private String raceType;
-
-    private Integer targetCalories;
-
-    private Integer carbsGrams;
-
-    private Integer proteinGrams;
-
-    private Integer fatGrams;
-
-    private Double hydrationLiters;
+    private String goal;
 
     @Column(columnDefinition = "TEXT")
-    private String generatedPlan;
+    private String strategyData;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "athlete_id")
+    @JsonIgnore
+    private User athlete;
 
     private LocalDateTime createdAt;
 
