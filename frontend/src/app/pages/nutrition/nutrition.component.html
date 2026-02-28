@@ -1,14 +1,19 @@
 <div class="nutrition-container">
-    <div class="nutrition-header-nav">
+    <div class="nutrition-header-nav"
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
         <a routerLink="/dashboard" class="btn-back">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                     d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
             </svg>
-            Volver al Dashboard
+            Volver
         </a>
+        <button class="btn-secondary" (click)="toggleHistory()">
+            {{ showHistory ? 'Generar Nuevo Plan' : 'Ver Mis Planes Guardados' }}
+        </button>
     </div>
 
+    @if (!showHistory) {
     @if (!planData) {
     <div class="nutrition-card form-card">
         <div class="card-header">
@@ -142,3 +147,68 @@
         }
     </div>
     }
+    }
+
+    @if (showHistory) {
+    <div class="history-view">
+        <div class="card-header text-center">
+            <h1>Mi Historial de Nutrición</h1>
+            <p>Tus estrategias guardadas para el día de la carrera</p>
+        </div>
+
+        @if (isLoadingHistory) {
+        <div class="spinner text-center" style="margin: 2rem auto;"></div>
+        }
+
+        <div class="saved-plans-grid">
+            @for (plan of savedPlans; track plan.id) {
+            <div class="glass-card history-card">
+                <div class="history-card-header">
+                    <h3>{{ plan.goal }}</h3>
+                    <span class="badge">{{ plan.weight }} kg</span>
+                </div>
+
+                <div class="history-card-body">
+                    @if (plan.parsedData.estrategiaCarrera; as carrera) {
+                    <p><strong>En Carrera:</strong> {{ carrera.HCporHora }}</p>
+                    } @else if (plan.parsedData.raw) {
+                    <p><em>Plan guardado en formato de texto.</em></p>
+                    }
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-primary" (click)="viewPlan(plan)"
+                        style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 500; border: none; cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                            <path
+                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                        </svg>
+                        Ver Detalle
+                    </button>
+
+                    <button class="btn-danger" (click)="deletePlan(plan.id)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+            }
+
+            @if (savedPlans.length === 0 && !isLoadingHistory) {
+            <div class="empty-state text-center">
+                <p>No tienes planes guardados todavía.</p>
+                <button class="btn-primary mt-3" (click)="toggleHistory()">Crear mi primer plan</button>
+            </div>
+            }
+        </div>
+    </div>
+    }
+</div>

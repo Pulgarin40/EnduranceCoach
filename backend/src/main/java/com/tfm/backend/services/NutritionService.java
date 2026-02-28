@@ -69,4 +69,18 @@ public class NutritionService {
                                 .orElseThrow(() -> new RuntimeException("User not found"));
                 return nutritionPlanRepository.findByAthleteId(user.getId());
         }
+
+        public void deleteNutritionPlan(Long id, String userEmail) {
+                User user = userRepository.findByEmail(userEmail)
+                                .orElseThrow(() -> new RuntimeException("User not found"));
+
+                NutritionPlan plan = nutritionPlanRepository.findById(id)
+                                .orElseThrow(() -> new RuntimeException("Plan not found"));
+
+                if (!plan.getAthlete().getId().equals(user.getId())) {
+                        throw new RuntimeException("Not authorized to delete this plan");
+                }
+
+                nutritionPlanRepository.delete(plan);
+        }
 }

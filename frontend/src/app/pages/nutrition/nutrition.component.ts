@@ -22,7 +22,70 @@ export class NutritionComponent {
     planData: any = null;
     errorMessage = '';
 
+    savedPlans: any[] = [];
+    showHistory = false;
+    isLoadingHistory = false;
+
     goals = ['Maratón', 'Media Maratón', '10K', 'Trail'];
+
+    // --- NUEVOS MÉTODOS PARA EL HISTORIAL ---
+
+    toggleHistory() {
+        this.showHistory = !this.showHistory;
+        if (this.showHistory) {
+            this.loadHistory();
+        }
+    }
+
+    loadHistory() {
+        this.isLoadingHistory = true;
+        this.nutritionService.getPlans().subscribe({
+            next: (plans) => {
+                // Parseamos el JSON de cada plan guardado de forma segura
+                this.savedPlans = plans.map(plan => {
+                    try {
+                        let rawData = plan.strategyData || plan.strategy_data;
+                        if (!rawData) return { ...plan, parsedData: { raw: 'Sin datos' } };
+
+                        let cleanData = rawData.replace(/```json|```/g, '');
+                        const match = cleanData.match(/\\{[\\s\\S]*\\}/);
+                        return { ...plan, parsedData: JSON.parse(match ? match[0] : cleanData) };
+                    } catch (e) {
+                        return { ...plan, parsedData: { raw: plan.strategyData } };
+                    }
+                });
+                this.isLoadingHistory = false;
+                this.cdr.detectChanges(); // Forzar refresco
+            },
+            error: (err) => {
+                console.error("Error cargando historial", err);
+                this.isLoadingHistory = false;
+            }
+        });
+    }
+
+    deletePlan(planId: number) {
+        if (!confirm('¿Estás seguro de que deseas eliminar este plan?')) return;
+
+        this.nutritionService.deletePlan(planId).subscribe({
+            next: () => {
+                // Sincronización perfecta: lo borramos de la vista sin recargar la página
+                this.savedPlans = this.savedPlans.filter(p => p.id !== planId);
+                this.cdr.detectChanges();
+            },
+            error: (err) => {
+                console.error("Error al eliminar", err);
+                alert("Hubo un error al eliminar el plan.");
+            }
+        });
+    }
+
+    // Método para cargar un plan antiguo en la vista principal
+    viewPlan(plan: any) {
+        this.planData = plan.parsedData; // Cargamos el JSON decodificado
+        this.showHistory = false;        // Cerramos la cuadrícula del historial
+        this.cdr.detectChanges();        // Forzamos a Angular a pintar las tarjetas
+    }
 
     constructor() {
         this.nutritionForm = this.fb.group({

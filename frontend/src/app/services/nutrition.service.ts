@@ -28,4 +28,12 @@ export class NutritionService {
     generatePlan(request: NutritionRequest): Observable<NutritionPlan> {
         return this.http.post<NutritionPlan>(`${this.apiUrl}/generate`, request);
     }
+
+    getPlans(): Observable<any[]> {
+        return this.http.get<any[]>(this.apiUrl);
+    }
+
+    deletePlan(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    }
 }

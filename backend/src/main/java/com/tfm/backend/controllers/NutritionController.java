@@ -23,9 +23,15 @@ public class NutritionController {
         return ResponseEntity.ok(plan);
     }
 
-    @GetMapping("/history")
+    @GetMapping
     public ResponseEntity<List<NutritionPlan>> getHistory(Principal principal) {
         List<NutritionPlan> history = nutritionService.getNutritionHistory(principal.getName());
         return ResponseEntity.ok(history);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePlan(@PathVariable Long id, Principal principal) {
+        nutritionService.deleteNutritionPlan(id, principal.getName());
+        return ResponseEntity.ok().build();
     }
 }
