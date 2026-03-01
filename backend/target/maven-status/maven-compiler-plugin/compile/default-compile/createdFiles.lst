@@ -4,6 +4,8 @@ com/tfm/backend/controllers/AuthController.class
 com/tfm/backend/services/MetricsService.class
 com/tfm/backend/controllers/NutritionController.class
 com/tfm/backend/models/TrainingPlan$TrainingPlanBuilder.class
+com/tfm/backend/controllers/UserController.class
+com/tfm/backend/controllers/DashboardController.class
 com/tfm/backend/models/dto/AuthResponse$AuthResponseBuilder.class
 com/tfm/backend/models/dto/RegisterRequest.class
 com/tfm/backend/models/AthleteMetrics$AthleteMetricsBuilder.class

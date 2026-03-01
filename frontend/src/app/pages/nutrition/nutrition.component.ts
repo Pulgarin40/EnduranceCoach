@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NutritionService, NutritionRequest } from '../../services/nutrition.service';
@@ -12,7 +12,7 @@ import { finalize } from 'rxjs/operators';
     templateUrl: './nutrition.component.html',
     styleUrls: ['./nutrition.component.css']
 })
-export class NutritionComponent {
+export class NutritionComponent implements OnInit {
     private nutritionService = inject(NutritionService);
     private fb = inject(FormBuilder);
     private cdr = inject(ChangeDetectorRef);
@@ -23,18 +23,12 @@ export class NutritionComponent {
     errorMessage = '';
 
     savedPlans: any[] = [];
-    showHistory = false;
     isLoadingHistory = false;
 
     goals = ['Maratón', 'Media Maratón', '10K', 'Trail'];
 
-    // --- NUEVOS MÉTODOS PARA EL HISTORIAL ---
-
-    toggleHistory() {
-        this.showHistory = !this.showHistory;
-        if (this.showHistory) {
-            this.loadHistory();
-        }
+    ngOnInit(): void {
+        this.loadHistory();
     }
 
     loadHistory() {
@@ -45,13 +39,13 @@ export class NutritionComponent {
                 this.savedPlans = plans.map(plan => {
                     try {
                         let rawData = plan.strategyData || plan.strategy_data;
-                        if (!rawData) return { ...plan, parsedData: { raw: 'Sin datos' } };
+                        if (!rawData) return { ...plan, parsedData: { raw: 'Sin datos' }, showDetails: false };
 
                         let cleanData = rawData.replace(/```json|```/g, '');
-                        const match = cleanData.match(/\\{[\\s\\S]*\\}/);
-                        return { ...plan, parsedData: JSON.parse(match ? match[0] : cleanData) };
+                        const match = cleanData.match(/\{[\s\S]*\}/);
+                        return { ...plan, parsedData: JSON.parse(match ? match[0] : cleanData), showDetails: false };
                     } catch (e) {
-                        return { ...plan, parsedData: { raw: plan.strategyData } };
+                        return { ...plan, parsedData: { raw: plan.strategyData }, showDetails: false };
                     }
                 });
                 this.isLoadingHistory = false;
@@ -80,11 +74,12 @@ export class NutritionComponent {
         });
     }
 
-    // Método para cargar un plan antiguo en la vista principal
-    viewPlan(plan: any) {
-        this.planData = plan.parsedData; // Cargamos el JSON decodificado
-        this.showHistory = false;        // Cerramos la cuadrícula del historial
-        this.cdr.detectChanges();        // Forzamos a Angular a pintar las tarjetas
+    // Método para alternar el detalle de un plan en su propia tarjeta
+    togglePlanDetails(plan: any) {
+        plan.showDetails = !plan.showDetails;
+        if (plan.showDetails) {
+            console.log('Plan de nutrición expandido:', plan.parsedData);
+        }
     }
 
     constructor() {

@@ -35,6 +35,12 @@ public class User {
     @Builder.Default
     private Role role = Role.ATHLETE;
 
+    private Double weight;
+
+    private Integer restingHr;
+
+    private Integer maxHr;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;

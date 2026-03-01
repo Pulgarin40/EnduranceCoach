@@ -1,6 +1,7 @@
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/services/NutritionService.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/services/MetricsService.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/TfmApplication.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/controllers/UserController.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/controllers/TrainingController.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/repositories/UserRepository.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/config/SecurityConfig.java
@@ -14,6 +15,7 @@
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/repositories/AthleteMetricsRepository.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/security/JwtAuthenticationFilter.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/dto/NutritionRequest.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/controllers/DashboardController.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/models/TrainingPlan.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/models/Role.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/config/SwaggerConfig.java

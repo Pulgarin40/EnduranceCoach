@@ -1,12 +1,11 @@
+/* --- LIMPIEZA TOTAL: ADIÓS NARANJA, HOLA AZUL PREMIUM --- */
+
 .training-container {
-    min-height: 100vh;
-    background-color: #0d0d0d;
-    color: #eeeeee;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* Eliminadas las líneas duplicadas que había aquí */
 }
 
 .training-header-nav {
@@ -19,7 +18,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #a0a0a0;
+    color: #cbd5e1;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -27,24 +26,13 @@
 }
 
 .btn-back:hover {
-    color: #fc4c02;
-    /* Sport Orange */
-}
-
-.training-card {
-    background-color: #1a1a1a;
-    border-radius: 12px;
-    padding: 30px;
-    width: 100%;
-    max-width: 800px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-    border: 1px solid #333;
-    margin-bottom: 30px;
+    color: #38bdf8;
+    /* Azul principal */
 }
 
 .card-header {
     margin-bottom: 30px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 20px;
 }
 
@@ -52,101 +40,23 @@
     margin: 0;
     font-size: 26px;
     font-weight: 800;
-    color: #fc4c02;
+    color: #38bdf8;
+    /* Título azul */
 }
 
 .card-header p {
     margin: 8px 0 0 0;
-    color: #888;
+    color: #cbd5e1;
     font-size: 14px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-}
-
-@media (max-width: 600px) {
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #e0e0e0;
 }
 
 .required {
-    color: #fc4c02;
-}
-
-.form-control {
-    width: 100%;
-    padding: 12px 16px;
-    background-color: #2a2a2a;
-    border: 1px solid #444;
-    border-radius: 8px;
-    color: #ffffff;
-    font-size: 16px;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-}
-
-/* Specific styling for select dropdown in dark mode */
-select.form-control {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23a0a0a0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-    background-repeat: no-repeat;
-    background-position: right 15px top 50%;
-    background-size: 12px auto;
-}
-
-select.form-control option {
-    background-color: #2a2a2a;
-    color: #ffffff;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: #fc4c02;
-    box-shadow: 0 0 0 2px rgba(252, 76, 2, 0.2);
+    color: #38bdf8;
+    /* Asteriscos en azul en lugar de naranja */
 }
 
 .form-actions {
     margin-top: 10px;
-}
-
-.btn-primary {
-    width: 100%;
-    padding: 14px;
-    background-color: #fc4c02;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.btn-primary:hover:not(:disabled) {
-    background-color: #e34402;
-}
-
-.btn-primary:disabled {
-    background-color: #444;
-    color: #888;
-    cursor: not-allowed;
 }
 
 .alert-danger {
@@ -155,9 +65,9 @@ select.form-control option {
     border-radius: 8px;
     font-size: 14px;
     text-align: center;
-    background-color: rgba(255, 77, 77, 0.1);
-    color: #ff4d4d;
-    border: 1px solid rgba(255, 77, 77, 0.2);
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 /* Results Section */
@@ -172,16 +82,20 @@ select.form-control option {
     align-items: center;
     justify-content: center;
     padding: 40px;
-    background-color: rgba(26, 26, 26, 0.5);
+    background-color: rgba(15, 23, 42, 0.5);
+    /* Fondo deep slate en vez de gris oscuro */
     border-radius: 12px;
-    border: 1px dashed #444;
+    border: 1px dashed rgba(56, 189, 248, 0.5);
+    /* Borde punteado azul */
 }
 
 .spinner {
     width: 40px;
     height: 40px;
-    border: 4px solid rgba(252, 76, 2, 0.2);
-    border-top-color: #fc4c02;
+    border: 4px solid rgba(56, 189, 248, 0.2);
+    /* Base azul oscura */
+    border-top-color: #38bdf8;
+    /* Brillo azul claro */
     border-radius: 50%;
     animation: spin 1s infinite linear;
     margin-bottom: 16px;
@@ -194,26 +108,20 @@ select.form-control option {
 }
 
 .loading-state p {
-    color: #fc4c02;
+    color: #38bdf8;
+    /* Texto de carga azul */
     font-weight: 500;
     margin: 0;
 }
 
-.plan-card {
-    background-color: #1e1e1e;
-    border-radius: 12px;
-    border: 1px solid #fc4c02;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(252, 76, 2, 0.1);
-}
-
 .plan-header {
-    background-color: rgba(252, 76, 2, 0.1);
+    background-color: rgba(56, 189, 248, 0.1);
+    /* Fondo sutil azulado */
     padding: 20px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #fc4c02;
+    border-bottom: 1px solid #38bdf8;
 }
 
 .plan-header h2 {
@@ -223,8 +131,10 @@ select.form-control option {
 }
 
 .badge-pro {
-    background-color: #fc4c02;
-    color: #fff;
+    background-color: #38bdf8;
+    /* Badge azul */
+    color: #0f172a;
+    /* Texto oscuro para contrastar */
     font-size: 10px;
     font-weight: 800;
     padding: 4px 8px;
@@ -237,14 +147,15 @@ select.form-control option {
 }
 
 .plan-raw-output {
-    background-color: #111;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* Cristal oscuro en lugar de negro puro */
     padding: 16px;
     border-radius: 8px;
     font-family: monospace;
     font-size: 13px;
-    color: #a0a0a0;
+    color: #cbd5e1;
     overflow-x: auto;
-    border: 1px solid #333;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Glassmorphism Styles for Plan Rendering */
@@ -260,8 +171,9 @@ select.form-control option {
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 22px;
-    color: #fc4c02;
-    border-bottom: 1px solid rgba(252, 76, 2, 0.2);
+    color: #38bdf8;
+    /* Título de la semana azul */
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
     padding-bottom: 10px;
     display: flex;
     align-items: center;
@@ -282,23 +194,26 @@ select.form-control option {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .workout-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(252, 76, 2, 0.15);
-    border-color: rgba(252, 76, 2, 0.3);
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.15);
+    /* Sombra azulada en hover */
+    border-color: rgba(56, 189, 248, 0.3);
 }
 
 .workout-day {
     font-weight: 800;
     font-size: 14px;
     text-transform: uppercase;
-    color: #fc4c02;
+    color: #38bdf8;
+    /* Día en azul */
     margin-bottom: 12px;
     letter-spacing: 1px;
-    background: rgba(252, 76, 2, 0.1);
+    background: rgba(56, 189, 248, 0.1);
+    /* Fondo azul sutil */
     display: inline-block;
     padding: 4px 10px;
     border-radius: 6px;
@@ -307,10 +222,9 @@ select.form-control option {
 
 .workflow-desc {
     font-size: 14px;
-    color: #cccccc;
+    color: #e2e8f0;
     line-height: 1.6;
     white-space: pre-wrap;
-    /* Mantiene saltos de linea posibles que envie AI */
 }
 
 /* Save Plan Action Container */
@@ -324,8 +238,10 @@ select.form-control option {
 }
 
 .btn-save {
-    background-color: #fc4c02;
-    color: white;
+    background-color: #38bdf8;
+    /* Botón en azul primario */
+    color: #0f172a;
+    /* Texto oscuro para contrastar */
     font-size: 16px;
     font-weight: 700;
     padding: 15px 30px;
@@ -336,26 +252,29 @@ select.form-control option {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 4px 15px rgba(252, 76, 2, 0.3);
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
 }
 
 .btn-save:hover:not(:disabled) {
-    background-color: #e34402;
+    background-color: #0284c7;
+    /* Azul un poco más oscuro al hacer hover */
+    color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(252, 76, 2, 0.4);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
 }
 
 .btn-save:disabled {
-    background-color: #444;
+    background-color: rgba(255, 255, 255, 0.1);
     color: #888;
     cursor: not-allowed;
     box-shadow: none;
 }
 
 .alert-success {
-    background-color: rgba(46, 204, 113, 0.1);
-    color: #2ecc71;
-    border: 1px solid rgba(46, 204, 113, 0.2);
+    background-color: rgba(16, 185, 129, 0.1);
+    /* Verde moderno (emerald) */
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.2);
     padding: 15px 25px;
     border-radius: 8px;
     font-weight: 600;
@@ -380,7 +299,7 @@ select.form-control option {
 /* Delete button styling */
 .btn-delete-subtle {
     background: transparent;
-    color: #888;
+    color: #94a3b8;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0.5rem 1rem;
     min-height: 40px;
@@ -394,8 +313,9 @@ select.form-control option {
 }
 
 .btn-delete-subtle:hover {
-    background: rgba(220, 53, 69, 0.1);
-    color: #dc3545;
-    border-color: rgba(220, 53, 69, 0.3);
+    background: rgba(239, 68, 68, 0.1);
+    /* Hover rojo suave */
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
     transform: scale(1.05);
 }

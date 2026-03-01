@@ -1,87 +1,205 @@
-<div class="dashboard-container">
-    <nav class="dashboard-navbar">
+<div class="dashboard-wrapper">
+    <!-- Top Navigation -->
+    <nav class="dashboard-navbar glass-panel">
         <div class="navbar-brand">
             <span class="brand-text">EnduranceCoach</span>
             <span class="brand-badge">PRO</span>
         </div>
         <div class="navbar-actions">
-            <span class="user-greeting">Hola, {{ athleteName }}</span>
             <button class="btn-logout" (click)="logout()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
-                    class="logout-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                         d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                     <path fill-rule="evenodd"
                         d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                 </svg>
-                Cerrar Sesión
+                <span>Salir</span>
             </button>
         </div>
     </nav>
 
-    <main class="dashboard-content">
-        <header class="dashboard-header">
-            <h1>Panel de Control</h1>
-            <p>Tu resumen deportivo actualizado</p>
+    <main class="dashboard-form-container" style="padding: 0;">
+        <!-- Header Global -->
+        <header class="dashboard-header"
+            style="max-width: 1400px; margin: 0 auto; padding: 40px 24px 0 24px; width: 100%; box-sizing: border-box;">
+            <h1 class="welcome-message">Hola, {{ athleteName }}</h1>
+            <p class="current-date">{{ currentDate | date:'fullDate' }}</p>
         </header>
 
-        <div class="cards-grid">
-            <!-- Tarjeta: Mis Métricas -->
-            <div class="dashboard-card metrics-card">
-                <div class="card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z" />
-                    </svg>
-                </div>
-                <div class="card-content">
-                    <h3>Mis Métricas</h3>
-                    <p>CTL, ATL, TSB y umbrales biométricos.</p>
-                </div>
-                <div class="card-action">
-                    <button class="btn-card" routerLink="/metrics">Ver Análisis</button>
-                </div>
-            </div>
+        <div class="dashboard-layout" style="padding-top: 24px;">
+            <!-- Barra Lateral Sticky (Estadísticas y Formulario) -->
+            <aside class="dashboard-sidebar">
+                <!-- Nueva Sección: Mis Métricas Base -->
+                <section class="glass-card" style="padding: 24px; margin-bottom: 24px;">
+                    <h2 style="font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 16px;">Mis Métricas
+                        Base
+                    </h2>
+                    <form class="metrics-form" (ngSubmit)="updateMetrics()">
+                        <div class="form-group">
+                            <label>Peso Actual (kg)</label>
+                            <input type="number" class="glass-input" [(ngModel)]="metrics.weight" name="weight"
+                                placeholder="Ej. 70" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Frecuencia Cardíaca en Reposo (ppm)</label>
+                            <input type="number" class="glass-input" [(ngModel)]="metrics.restingHr" name="restingHr"
+                                placeholder="Ej. 50" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Frecuencia Cardíaca Máxima (ppm)</label>
+                            <input type="number" class="glass-input" [(ngModel)]="metrics.maxHr" name="maxHr"
+                                placeholder="Ej. 190" required>
+                        </div>
+                        <div class="metrics-action"
+                            style="grid-column: 1 / -1; display: flex; align-items: center; justify-content: flex-end; gap: 15px;">
+                            @if (updateSuccess) {
+                            <span class="text-success" style="color: #10b981; font-weight: 600; font-size: 14px;">✅
+                                Datos
+                                guardados</span>
+                            }
+                            <button type="submit" class="btn-primary" [disabled]="isUpdating">
+                                {{ isUpdating ? 'Guardando...' : 'Actualizar Datos' }}
+                            </button>
+                        </div>
+                    </form>
+                </section>
 
-            <!-- Tarjeta: Plan de Entrenamiento -->
-            <div class="dashboard-card training-card">
-                <div class="card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        viewBox="0 0 16 16">
-                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                    </svg>
-                </div>
-                <div class="card-content">
-                    <h3>Plan de Entrenamiento</h3>
-                    <p>Tus próximas sesiones: Ciclismo Ruta, Running y más.</p>
-                </div>
-                <div class="card-action">
-                    <button class="btn-card" routerLink="/training">Ver Plan</button>
-                </div>
-            </div>
+                <!-- Fila 1: Stats Section -->
+                <section class="stats-grid">
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon pulse-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Planes Creados</h3>
+                            <p class="stat-value">{{ planesCreados }}</p>
+                        </div>
+                    </div>
 
-            <!-- Tarjeta: Plan de Nutrición -->
-            <div class="dashboard-card nutrition-card">
-                <div class="card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M11.5 5.5v10h-7v-10h7ZM12 4H4v11.5A1.5 1.5 0 0 0 5.5 17h5a1.5 1.5 0 0 0 1.5-1.5V4ZM8.5 0a.5.5 0 0 1 .5.5V4H7V.5a.5.5 0 0 1 .5-.5Z" />
-                        <path
-                            d="M4 1.5A.5.5 0 0 1 4.5 2v2H3V2a.5.5 0 0 1 .5-.5ZM12 1.5a.5.5 0 0 1 .5.5v2h-1.5V2a.5.5 0 0 1 .5-.5ZM8 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" />
-                    </svg>
-                </div>
-                <div class="card-content">
-                    <h3>Plan de Nutrición</h3>
-                    <p>Gramos de CH/h y avituallamientos sugeridos.</p>
-                </div>
-                <div class="card-action">
-                    <button class="btn-card" routerLink="/nutrition">Ver Nutrición</button>
-                </div>
-            </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon pulse-orange">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                            </svg>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Racha Actual</h3>
+                            <p class="stat-value">{{ rachaActual }} días</p>
+                        </div>
+                    </div>
 
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon pulse-green">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                            </svg>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Próximo Objetivo</h3>
+                            <p class="stat-value text-sm">Maratón - Faltan 45 días</p>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Contenido Principal (Acciones e Historial) -->
+            <main class="dashboard-main">
+                <!-- Fila 2: Quick Actions Section -->
+                <section class="actions-grid">
+                    <button class="glass-card action-card training-action" routerLink="/training">
+                        <div class="action-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <div class="action-content">
+                            <h2>Generar Entrenamiento IA</h2>
+                            <p>Crea tu próximo bloque de entrenamiento personalizado y optimizado por IA.</p>
+                        </div>
+                    </button>
+
+                    <button class="glass-card action-card nutrition-action" routerLink="/nutrition">
+                        <div class="action-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                        </div>
+                        <div class="action-content">
+                            <h2>Estrategia Nutricional IA</h2>
+                            <p>Planifica tu nutrición, hidratación y asimilación para el día de carrera.</p>
+                        </div>
+                    </button>
+                </section>
+
+                <!-- Fila 3: Calendar / Activity Section -->
+                <section class="activity-section glass-card">
+                    <div class="activity-header">
+                        <h2>Últimos planes generados</h2>
+                        <span class="activity-badge">Actividad Reciente</span>
+                    </div>
+                    <div class="activity-list">
+
+                        <div class="activity-item">
+                            <div class="activity-item-icon bg-blue">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="activity-item-details">
+                                <h4>Bloque Ironman - Fase de Construcción</h4>
+                                <p>Generado hoy a las 08:30 AM</p>
+                            </div>
+                            <div class="activity-item-status">Activo</div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-item-icon bg-cyan">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </div>
+                            <div class="activity-item-details">
+                                <h4>Estrategia Nutricional - Medio Maratón</h4>
+                                <p>Generado hace 2 días</p>
+                            </div>
+                            <div class="activity-item-status completed">Completado</div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-item-icon bg-blue">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="activity-item-details">
+                                <h4>Bloque Base - Trail Running</h4>
+                                <p>Generado hace 5 días</p>
+                            </div>
+                            <div class="activity-item-status completed">Completado</div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </main>
         </div>
-    </main>
-</div>
