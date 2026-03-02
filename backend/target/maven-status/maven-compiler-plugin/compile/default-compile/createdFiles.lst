@@ -8,6 +8,7 @@ com/tfm/backend/controllers/UserController.class
 com/tfm/backend/controllers/DashboardController.class
 com/tfm/backend/models/dto/AuthResponse$AuthResponseBuilder.class
 com/tfm/backend/models/dto/RegisterRequest.class
+com/tfm/backend/services/DashboardService.class
 com/tfm/backend/models/AthleteMetrics$AthleteMetricsBuilder.class
 com/tfm/backend/models/dto/AuthResponse.class
 com/tfm/backend/models/dto/LoginRequest$LoginRequestBuilder.class
@@ -18,8 +19,8 @@ com/tfm/backend/models/dto/TrainingPlanRequest.class
 com/tfm/backend/repositories/NutritionPlanRepository.class
 com/tfm/backend/services/AuthService.class
 com/tfm/backend/models/TrainingPlan.class
-com/tfm/backend/services/NutritionService.class
 com/tfm/backend/dto/NutritionRequest.class
+com/tfm/backend/services/NutritionService.class
 com/tfm/backend/security/CustomUserDetailsService.class
 com/tfm/backend/services/JwtService.class
 com/tfm/backend/services/AiTrainingService.class
@@ -30,10 +31,14 @@ com/tfm/backend/controllers/MetricsController.class
 com/tfm/backend/config/SecurityConfig.class
 com/tfm/backend/dto/TrainingRequest.class
 com/tfm/backend/controllers/TrainingController.class
+com/tfm/backend/dto/RecentActivityDTO$RecentActivityDTOBuilder.class
 com/tfm/backend/models/NutritionPlan$NutritionPlanBuilder.class
+com/tfm/backend/dto/RecentActivityDTO.class
 com/tfm/backend/models/dto/LoginRequest.class
 com/tfm/backend/models/User.class
+com/tfm/backend/dto/DashboardStatsDTO$DashboardStatsDTOBuilder.class
 com/tfm/backend/repositories/AthleteMetricsRepository.class
+com/tfm/backend/dto/DashboardStatsDTO.class
 com/tfm/backend/models/User$UserBuilder.class
 com/tfm/backend/config/SwaggerConfig.class
 com/tfm/backend/models/NutritionPlan.class

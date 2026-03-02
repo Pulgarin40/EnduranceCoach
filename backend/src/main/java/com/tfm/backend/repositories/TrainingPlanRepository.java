@@ -11,4 +11,6 @@ public interface TrainingPlanRepository extends JpaRepository<TrainingPlan, Long
     List<TrainingPlan> findByAthleteId(Long athleteId);
 
     List<TrainingPlan> findByAthleteEmailOrderByCreatedAtDesc(String email);
+
+    long countByAthleteId(Long athleteId);
 }

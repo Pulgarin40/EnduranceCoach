@@ -24,7 +24,7 @@ public class TrainingController {
     @PostMapping("/generate")
     public ResponseEntity<String> generatePlan(@RequestBody com.tfm.backend.dto.TrainingRequest request,
             org.springframework.security.core.Authentication authentication) {
-        String generatedPlanJson = aiTrainingService.generateTrainingPlan(request);
+        String generatedPlanJson = aiTrainingService.generateTrainingPlan(request, authentication.getName());
         return ResponseEntity.ok()
                 .header("Content-Type", "application/json")
                 .body(generatedPlanJson);

@@ -1,10 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { DashboardService } from '../../services/dashboard.service';
-import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -16,8 +15,8 @@ import { UserService } from '../../services/user.service';
 export class DashboardComponent implements OnInit {
     private authService = inject(AuthService);
     private dashboardService = inject(DashboardService);
-    private userService = inject(UserService);
     private router = inject(Router);
+    private cdr = inject(ChangeDetectorRef);
 
     athleteName = 'Deportista';
     currentDate = new Date();
@@ -25,70 +24,25 @@ export class DashboardComponent implements OnInit {
     // Stats overview
     planesCreados = 0;
     rachaActual = 0;
-
-    // Metrics form data
-    metrics = {
-        weight: null as number | null,
-        restingHr: null as number | null,
-        maxHr: null as number | null
-    };
-
-    updateSuccess = false;
-    isUpdating = false;
+    actividadReciente: any[] = [];
 
     ngOnInit(): void {
         this.loadStats();
-        this.loadMetrics();
     }
 
     loadStats() {
         this.dashboardService.getStats().subscribe({
-            next: (data) => {
-                this.planesCreados = data.planesCreados;
-                this.rachaActual = data.rachaActual;
+            next: (response: any) => {
+                // 🔴 CHIVATO: Veremos exactamente qué manda Java en la consola del navegador
+                console.log('🔴 DATOS CRUDOS DEL BACKEND:', response);
+
+                // Asignación a prueba de balas (Atrapa diferentes formatos)
+                this.planesCreados = response?.totalPlans || response?.total_plans || response?.planesCreados || 0;
+                this.rachaActual = response?.currentStreak || response?.current_streak || response?.rachaActual || 0;
+                this.actividadReciente = response?.recentActivities || response?.recent_activities || response?.actividadReciente || [];
+                this.cdr.detectChanges();
             },
-            error: (err) => console.error('Error fetching dashboard stats', err)
-        });
-    }
-
-    loadMetrics() {
-        this.userService.getMetrics().subscribe({
-            next: (data) => {
-                this.metrics.weight = data.weight ?? null;
-                this.metrics.restingHr = data.restingHr ?? null;
-                this.metrics.maxHr = data.maxHr ?? null;
-            },
-            error: (err) => console.error('Error fetching user metrics', err)
-        });
-    }
-
-    updateMetrics() {
-        this.isUpdating = true;
-        this.updateSuccess = false;
-
-        const payload = {
-            weight: this.metrics.weight ?? undefined,
-            restingHr: this.metrics.restingHr ?? undefined,
-            maxHr: this.metrics.maxHr ?? undefined
-        };
-
-        this.userService.updateMetrics(payload).subscribe({
-            next: (data) => {
-                this.metrics.weight = data.weight ?? null;
-                this.metrics.restingHr = data.restingHr ?? null;
-                this.metrics.maxHr = data.maxHr ?? null;
-
-                this.updateSuccess = true;
-                this.isUpdating = false;
-
-                setTimeout(() => {
-                    this.updateSuccess = false;
-                }, 3000);
-            },
-            error: (err) => {
-                console.error('Error updating metrics', err);
-                this.isUpdating = false;
-            }
+            error: (err) => console.error('🔴 Error fetching dashboard stats', err)
         });
     }
 

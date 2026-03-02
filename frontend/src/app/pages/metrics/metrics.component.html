@@ -1,7 +1,7 @@
-<div class="metrics-container">
-    <div class="metrics-card">
-        <div class="card-header">
-            <div class="header-title">
+<div class="metrics-container" style="color: #e2e8f0; display: flex; justify-content: center; padding: 20px;">
+    <div class="glass-card" style="width: 100%; max-width: 800px; padding: 30px; box-sizing: border-box;">
+        <div class="card-header" style="margin-bottom: 2rem;">
+            <div class="header-title" style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
                 <a routerLink="/dashboard" class="btn-back">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         viewBox="0 0 16 16">
@@ -9,66 +9,85 @@
                             d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                     </svg>
                 </a>
-                <h1>Mis Métricas</h1>
+                <h1 style="color: #38bdf8; margin: 0;">Mis Métricas</h1>
             </div>
-            <p>Actualiza tus datos para personalizar tus planes</p>
+            <p style="color: #cbd5e1; margin: 0;">Actualiza tus datos para personalizar tus planes</p>
         </div>
 
         <div *ngIf="isLoading" class="loading-state">
+            <div class="spinner"></div>
             <p>Cargando métricas...</p>
         </div>
 
         <form *ngIf="!isLoading" [formGroup]="metricsForm" (ngSubmit)="onSubmit()" class="metrics-form">
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="weight">Peso (kg) <span class="required">*</span></label>
-                    <input type="number" id="weight" class="form-control" formControlName="weight"
-                        placeholder="Ej: 70.5" step="0.1">
+            <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                <div class="form-group" style="flex: 1; min-width: 200px;">
+                    <label for="weight"
+                        style="color: #e2e8f0; display: block; margin-bottom: 0.5rem; font-weight: 500;">Peso (kg) <span
+                            class="required" style="color: #38bdf8;">*</span></label>
+                    <input type="number" id="weight" class="glass-input" formControlName="weight" placeholder="Ej: 70.5"
+                        step="0.1" style="width: 100%; box-sizing: border-box;">
                 </div>
 
-                <div class="form-group">
-                    <label for="height">Altura (cm) <span class="required">*</span></label>
-                    <input type="number" id="height" class="form-control" formControlName="height"
-                        placeholder="Ej: 175">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="restingHeartRate">FC Reposo (bpm) <span class="required">*</span></label>
-                    <input type="number" id="restingHeartRate" class="form-control" formControlName="restingHeartRate"
-                        placeholder="Ej: 50">
+                <div class="form-group" style="flex: 1; min-width: 200px;">
+                    <label for="height"
+                        style="color: #e2e8f0; display: block; margin-bottom: 0.5rem; font-weight: 500;">Altura (cm)
+                        <span class="required" style="color: #38bdf8;">*</span></label>
+                    <input type="number" id="height" class="glass-input" formControlName="height" placeholder="Ej: 175"
+                        style="width: 100%; box-sizing: border-box;">
                 </div>
             </div>
 
-            <div class="section-divider">
-                <span>Datos Avanzados (Opcional)</span>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="vo2Max">VO2 Max (ml/kg/min)</label>
-                    <input type="number" id="vo2Max" class="form-control" formControlName="vo2Max" placeholder="Ej: 55">
-                </div>
-
-                <div class="form-group">
-                    <label for="ftp">FTP Ciclismo (W)</label>
-                    <input type="number" id="ftp" class="form-control" formControlName="ftp" placeholder="Ej: 250">
+            <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 1.5rem;">
+                <div class="form-group" style="flex: 1; max-width: 50%;">
+                    <label for="restingHeartRate"
+                        style="color: #e2e8f0; display: block; margin-bottom: 0.5rem; font-weight: 500;">FC Reposo (bpm)
+                        <span class="required" style="color: #38bdf8;">*</span></label>
+                    <input type="number" id="restingHeartRate" class="glass-input" formControlName="restingHeartRate"
+                        placeholder="Ej: 50" style="width: 100%; box-sizing: border-box;">
                 </div>
             </div>
 
-            <div class="form-actions">
-                <button type="submit" class="btn-primary" [disabled]="metricsForm.invalid || isSaving">
+            <div class="section-divider"
+                style="margin: 2.5rem 0 1.5rem 0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); line-height: 0.1em;">
+                <span
+                    style="background: rgba(15, 23, 42, 0.8); padding: 0 15px; color: #94a3b8; font-size: 0.9rem; border-radius: 4px;">Datos
+                    Avanzados (Opcional)</span>
+            </div>
+
+            <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                <div class="form-group" style="flex: 1; min-width: 200px;">
+                    <label for="vo2Max"
+                        style="color: #e2e8f0; display: block; margin-bottom: 0.5rem; font-weight: 500;">VO2 Max
+                        (ml/kg/min)</label>
+                    <input type="number" id="vo2Max" class="glass-input" formControlName="vo2Max" placeholder="Ej: 55"
+                        style="width: 100%; box-sizing: border-box;">
+                </div>
+
+                <div class="form-group" style="flex: 1; min-width: 200px;">
+                    <label for="ftp"
+                        style="color: #e2e8f0; display: block; margin-bottom: 0.5rem; font-weight: 500;">FTP Ciclismo
+                        (W)</label>
+                    <input type="number" id="ftp" class="glass-input" formControlName="ftp" placeholder="Ej: 250"
+                        style="width: 100%; box-sizing: border-box;">
+                </div>
+            </div>
+
+            <div class="form-actions" style="margin-top: 2rem; display: flex; justify-content: flex-end;">
+                <button type="submit" class="btn-primary" [disabled]="metricsForm.invalid || isSaving"
+                    style="padding: 0.8rem 2rem; font-size: 1rem;">
                     {{ isSaving ? 'Guardando...' : 'Guardar Cambios' }}
                 </button>
             </div>
 
-            <div *ngIf="successMessage" class="alert alert-success">
+            <div *ngIf="successMessage" class="alert alert-success"
+                style="margin-top: 1.5rem; background: rgba(34, 197, 94, 0.1); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.2);">
                 {{ successMessage }}
             </div>
 
-            <div *ngIf="errorMessage" class="alert alert-danger">
+            <div *ngIf="errorMessage" class="alert alert-danger"
+                style="margin-top: 1.5rem; background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2);">
                 {{ errorMessage }}
             </div>
         </form>

@@ -1,5 +1,4 @@
 <div class="dashboard-wrapper">
-    <!-- Top Navigation -->
     <nav class="dashboard-navbar glass-panel">
         <div class="navbar-brand">
             <span class="brand-text">EnduranceCoach</span>
@@ -19,7 +18,6 @@
     </nav>
 
     <main class="dashboard-form-container" style="padding: 0;">
-        <!-- Header Global -->
         <header class="dashboard-header"
             style="max-width: 1400px; margin: 0 auto; padding: 40px 24px 0 24px; width: 100%; box-sizing: border-box;">
             <h1 class="welcome-message">Hola, {{ athleteName }}</h1>
@@ -27,44 +25,8 @@
         </header>
 
         <div class="dashboard-layout" style="padding-top: 24px;">
-            <!-- Barra Lateral Sticky (Estadísticas y Formulario) -->
-            <aside class="dashboard-sidebar">
-                <!-- Nueva Sección: Mis Métricas Base -->
-                <section class="glass-card" style="padding: 24px; margin-bottom: 24px;">
-                    <h2 style="font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 16px;">Mis Métricas
-                        Base
-                    </h2>
-                    <form class="metrics-form" (ngSubmit)="updateMetrics()">
-                        <div class="form-group">
-                            <label>Peso Actual (kg)</label>
-                            <input type="number" class="glass-input" [(ngModel)]="metrics.weight" name="weight"
-                                placeholder="Ej. 70" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Frecuencia Cardíaca en Reposo (ppm)</label>
-                            <input type="number" class="glass-input" [(ngModel)]="metrics.restingHr" name="restingHr"
-                                placeholder="Ej. 50" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Frecuencia Cardíaca Máxima (ppm)</label>
-                            <input type="number" class="glass-input" [(ngModel)]="metrics.maxHr" name="maxHr"
-                                placeholder="Ej. 190" required>
-                        </div>
-                        <div class="metrics-action"
-                            style="grid-column: 1 / -1; display: flex; align-items: center; justify-content: flex-end; gap: 15px;">
-                            @if (updateSuccess) {
-                            <span class="text-success" style="color: #10b981; font-weight: 600; font-size: 14px;">✅
-                                Datos
-                                guardados</span>
-                            }
-                            <button type="submit" class="btn-primary" [disabled]="isUpdating">
-                                {{ isUpdating ? 'Guardando...' : 'Actualizar Datos' }}
-                            </button>
-                        </div>
-                    </form>
-                </section>
 
-                <!-- Fila 1: Stats Section -->
+            <aside class="dashboard-sidebar">
                 <section class="stats-grid">
                     <div class="glass-card stat-card">
                         <div class="stat-icon pulse-blue">
@@ -106,16 +68,31 @@
                         </div>
                         <div class="stat-details">
                             <h3>Próximo Objetivo</h3>
-                            <p class="stat-value text-sm">Maratón - Faltan 45 días</p>
+                            @if (actividadReciente.length > 0) {
+                            <p class="stat-value text-sm">{{ actividadReciente[0].title }}</p>
+                            } @else {
+                            <p class="stat-value text-sm">Sin objetivo</p>
+                            }
                         </div>
                     </div>
                 </section>
             </aside>
 
-            <!-- Contenido Principal (Acciones e Historial) -->
             <main class="dashboard-main">
-                <!-- Fila 2: Quick Actions Section -->
-                <section class="actions-grid">
+
+                <section class="glass-card text-center"
+                    style="padding: 2rem; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <h3 style="margin-top: 0; color: #38bdf8; font-size: 1.5rem;">Mi Perfil Fisiológico</h3>
+                    <p style="color: #cbd5e1; margin-bottom: 1.5rem; max-width: 600px;">La IA necesita conocer tu peso,
+                        FC en reposo, VO2Max y FTP para calcular tus zonas de intensidad y requerimientos calóricos con
+                        exactitud matemática.</p>
+                    <button class="btn-primary" routerLink="/metrics"
+                        style="padding: 0.8rem 2rem; border-radius: 8px; font-weight: bold;">
+                        Actualizar mis Métricas ⚙️
+                    </button>
+                </section>
+
+                <section class="actions-grid" style="margin-bottom: 2rem;">
                     <button class="glass-card action-card training-action" routerLink="/training">
                         <div class="action-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -145,61 +122,48 @@
                     </button>
                 </section>
 
-                <!-- Fila 3: Calendar / Activity Section -->
                 <section class="activity-section glass-card">
                     <div class="activity-header">
                         <h2>Últimos planes generados</h2>
                         <span class="activity-badge">Actividad Reciente</span>
                     </div>
                     <div class="activity-list">
-
+                        @for (item of actividadReciente; track item.id) {
                         <div class="activity-item">
-                            <div class="activity-item-icon bg-blue">
+                            <div class="activity-item-icon"
+                                [ngClass]="item.type === 'Entrenamiento' ? 'bg-blue' : 'bg-cyan'">
+                                @if (item.type === 'Entrenamiento') {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
-                            </div>
-                            <div class="activity-item-details">
-                                <h4>Bloque Ironman - Fase de Construcción</h4>
-                                <p>Generado hoy a las 08:30 AM</p>
-                            </div>
-                            <div class="activity-item-status">Activo</div>
-                        </div>
-
-                        <div class="activity-item">
-                            <div class="activity-item-icon bg-cyan">
+                                } @else {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
+                                }
                             </div>
                             <div class="activity-item-details">
-                                <h4>Estrategia Nutricional - Medio Maratón</h4>
-                                <p>Generado hace 2 días</p>
+                                <h4>{{ item.title }}</h4>
+                                <p>Generado el {{ item.date | date:'shortDate' }}</p>
                             </div>
-                            <div class="activity-item-status completed">Completado</div>
+                            <div class="activity-item-status" [ngClass]="{'completed': item.type === 'Nutrición'}">
+                                {{ item.type }}
+                            </div>
                         </div>
-
-                        <div class="activity-item">
-                            <div class="activity-item-icon bg-blue">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <div class="activity-item-details">
-                                <h4>Bloque Base - Trail Running</h4>
-                                <p>Generado hace 5 días</p>
-                            </div>
-                            <div class="activity-item-status completed">Completado</div>
+                        } @empty {
+                        <div class="activity-item" style="justify-content: center; padding: 2rem;">
+                            <p style="color: #64748b; text-align: center;">No hay actividad reciente. ¡Crea tu primer
+                                plan!</p>
                         </div>
-
+                        }
                     </div>
                 </section>
 
             </main>
         </div>
+    </main>
+</div>

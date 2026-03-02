@@ -45,6 +45,13 @@
             <div class="alert alert-danger">{{ errorMessage }}</div>
             }
 
+            <div class="glass-card mb-4 p-3 alert-info"
+                style="margin-bottom: 20px; padding: 15px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; color: #e2e8f0; display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.2rem;">💡</span>
+                <span>La IA utilizará tus métricas guardadas (Peso, FC Reposo, etc.) para personalizar este plan. Puedes
+                    actualizarlas en tu perfil.</span>
+            </div>
+
             <div class="form-actions">
                 <button type="submit" class="btn-primary" [disabled]="nutritionForm.invalid || isLoading">
                     @if (!isLoading) {

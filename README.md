@@ -16,7 +16,7 @@
 - 🍏 **Planes de Nutrición Inteligentes**: Creación de estrategias nutricionales adaptadas al perfil del usuario, incluyendo pautas previas, hidratación y estrategias de día de carrera.
 - 📊 **Seguimiento de Métricas**: Dashboard completo para que los atletas registren y visualicen sus métricas clave (peso, frecuencia cardíaca máxima, FTP).
 - 🔒 **Seguridad y Autenticación**: Sistema completo de login/registro utilizando **JWT (JSON Web Tokens)** y contraseñas encriptadas, garantizando la privacidad de los datos.
-- 🎨 **Diseño UX/UI Premium**: Interfaz oscura deportiva con acentos en "Sport Orange", un look and feel envolvente apoyado por tarjetas "*Glassmorphism*", diseño 100% responsivo y transiciones animadas.
+- 🎨 **Diseño UX/UI Premium**: Interfaz moderna estilo Glassmorphism sobre fondos oscuros (Deep Slate) y acentos en Azul Premium (#38bdf8), ofreciendo un look and feel envolvente y 100% responsivo.
 
 ---
 
