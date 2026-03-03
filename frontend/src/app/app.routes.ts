@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MetricsComponent } from './pages/metrics/metrics.component';
 import { TrainingComponent } from './pages/training/training.component';
 import { NutritionComponent } from './pages/nutrition/nutrition.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -14,5 +15,6 @@ export const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
     { path: 'metrics', component: MetricsComponent, canActivate: [authGuard] },
     { path: 'training', component: TrainingComponent, canActivate: [authGuard] },
-    { path: 'nutrition', component: NutritionComponent, canActivate: [authGuard] }
+    { path: 'nutrition', component: NutritionComponent, canActivate: [authGuard] },
+    { path: 'profile', component: ProfileComponent, canActivate: [authGuard] }
 ];

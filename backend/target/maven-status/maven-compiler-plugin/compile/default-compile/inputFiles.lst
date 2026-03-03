@@ -1,4 +1,5 @@
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/services/NutritionService.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/dto/UserProfileDTO.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/services/MetricsService.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/TfmApplication.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/dto/RecentActivityDTO.java
@@ -34,3 +35,4 @@
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/dto/DashboardStatsDTO.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/services/TrainingService.java
 /home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/services/AiTrainingService.java
+/home/jberpu/Cursos/Master IA/TFM/EnduranceCoach/backend/src/main/java/com/tfm/backend/services/UserService.java

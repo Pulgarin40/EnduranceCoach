@@ -1,0 +1,40 @@
+<div class="profile-wrapper">
+  <div class="glass-card">
+    <div class="avatar-container">
+      <svg viewBox="0 0 24 24" fill="currentColor" class="avatar-icon">
+        <path
+          d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm0 14c-4.418 0-8 2.686-8 6h16c0-3.314-3.582-6-8-6z" />
+      </svg>
+    </div>
+
+    @if (loading) {
+    <p class="loading-text">Cargando datos de tu perfil...</p>
+    }
+
+    @if (error) {
+    <div class="error-box">
+      <p>{{ error }}</p>
+    </div>
+    }
+
+    @if (!loading && !error && user) {
+    <div class="user-info">
+      <h2>{{ user.username }}</h2>
+
+      <div class="info-row">
+        <strong>Email:</strong>
+        <span>{{ user.email }}</span>
+      </div>
+
+      <div class="info-row">
+        <strong>Miembro desde:</strong>
+        <span>{{ user.createdAt | date:'longDate' }}</span>
+      </div>
+
+      <button routerLink="/metrics" class="btn-metrics">
+        ⚙️ Configurar Mis Métricas Fisiológicas
+      </button>
+    </div>
+    }
+  </div>
+</div>

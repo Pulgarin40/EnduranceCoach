@@ -1,7 +1,9 @@
 package com.tfm.backend.controllers;
 
+import com.tfm.backend.dto.UserProfileDTO;
 import com.tfm.backend.models.User;
 import com.tfm.backend.repositories.UserRepository;
+import com.tfm.backend.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,12 @@ import java.util.Map;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final UserService userService;
+
+    @GetMapping
+    public ResponseEntity<UserProfileDTO> getMe() {
+        return ResponseEntity.ok(userService.getCurrentUserProfile());
+    }
 
     @GetMapping("/metrics")
     public ResponseEntity<Map<String, Object>> getMetrics(Principal principal) {

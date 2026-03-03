@@ -12,11 +12,11 @@
 
 ## ✨ Características Principales
 
-- 🤖 **Entrenamiento Impulsado por IA**: Generación de planes estructurados con métricas avanzadas (zonas de intensidad, FTP/RPE, calentamiento, bloques principales y enfriamiento) basándose en los objetivos del atleta.
+- 🤖 **Entrenamiento Impulsado por IA**: Generación de planes estructurados con métricas avanzadas (zonas de intensidad, FTP/RPE, calentamiento, bloques principales y enfriamiento) basándose en los objetivos del atleta. Con generación garantizada de 7 días exactos.
 - 🍏 **Planes de Nutrición Inteligentes**: Creación de estrategias nutricionales adaptadas al perfil del usuario, incluyendo pautas previas, hidratación y estrategias de día de carrera.
-- 📊 **Seguimiento de Métricas**: Dashboard completo para que los atletas registren y visualicen sus métricas clave (peso, frecuencia cardíaca máxima, FTP).
+- 📊 **Seguimiento de Métricas y Perfil**: Dashboard completo dinámico para que los atletas registren y visualicen sus métricas clave (peso, frecuencia cardíaca máxima, FTP), racha actual y próximos objetivos, incluyendo una página de **Mi Perfil** para consultar los datos del atleta de manera segura.
 - 🔒 **Seguridad y Autenticación**: Sistema completo de login/registro utilizando **JWT (JSON Web Tokens)** y contraseñas encriptadas, garantizando la privacidad de los datos.
-- 🎨 **Diseño UX/UI Premium**: Interfaz moderna estilo Glassmorphism sobre fondos oscuros (Deep Slate) y acentos en Azul Premium (#38bdf8), ofreciendo un look and feel envolvente y 100% responsivo.
+- 🎨 **Diseño UX/UI Premium**: Interfaz moderna estilo Glassmorphism sobre fondos oscuros (Deep Slate) y acentos en Azul Premium (#38bdf8), ofreciendo un look and feel envolvente, 100% responsivo y con animaciones sutiles.
 
 ---
 
@@ -101,10 +101,12 @@ Abre tu navegador en `http://localhost:4200` para empezar a usar la aplicación.
 |---|---|---|---|
 | `POST` | `/api/auth/register` | Registro de nuevo atleta | ❌ No |
 | `POST` | `/api/auth/login` | Login y retorno del token JWT | ❌ No |
+| `GET`  | `/api/user/me` | Obtiene el perfil (sin contraseña) del atleta autenticado | ✅ Sí |
 | `GET`  | `/api/metrics` | Obtiene las métricas del atleta | ✅ Sí |
 | `POST` | `/api/metrics/save` | Guarda/Actualiza las métricas | ✅ Sí |
+| `GET`  | `/api/dashboard/stats` | Obtiene racha, cantidad de planes y actividad reciente del atleta | ✅ Sí |
 | `POST` | `/api/training/generate` | Genera un plan de IA (depende del objetivo) | ✅ Sí |
-| `POST` | `/api/training/save` | Guarda un plan en el historial del usuario | ✅ Sí |
+| `POST` | `/api/training/save` | Guarda un plan de entrenamiento en el historial | ✅ Sí |
 | `GET`  | `/api/training/user` | Obtiene el historial de planes de entrenamiento | ✅ Sí |
 | `POST` | `/api/nutrition/generate` | Genera un plan nutricional completo con IA | ✅ Sí |
 | `GET`  | `/api/nutrition` | Obtiene el historial de planes de nutrición | ✅ Sí |
