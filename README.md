@@ -6,114 +6,158 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
 
-**EnduranceCoach AI** es una plataforma web integral, diseñada para revolucionar la gestión deportiva en disciplinas de resistencia (running, triatlón, ciclismo). Esta aplicación combina la potencia de un backend robusto con la inteligencia de modelos **generativos (OpenAI)** para crear de forma automática planes de entrenamiento y nutrición hiper-personalizados, presentados en una interfaz moderna y premium.
+**Proyecto Final de Máster (TFM) - Máster de Desarrollo con IA (BIGSEO)**
+* **Alumno:** [Juan Pablo Bermúdez Pulgarín]
+* **Email:** [jberpu82@gmail.com]
 
 ---
 
-## ✨ Características Principales
+## 1. Descripción general del proyecto
 
-- 🤖 **Entrenamiento Impulsado por IA**: Generación de planes estructurados con métricas avanzadas (zonas de intensidad, FTP/RPE, calentamiento, bloques principales y enfriamiento) basándose en los objetivos del atleta. Con generación garantizada de 7 días exactos.
-- 🍏 **Planes de Nutrición Inteligentes**: Creación de estrategias nutricionales adaptadas al perfil del usuario, incluyendo pautas previas, hidratación y estrategias de día de carrera.
-- 📊 **Seguimiento de Métricas y Perfil**: Dashboard completo dinámico para que los atletas registren y visualicen sus métricas clave (peso, frecuencia cardíaca máxima, FTP), racha actual y próximos objetivos, incluyendo una página de **Mi Perfil** para consultar los datos del atleta de manera segura.
-- 🔒 **Seguridad y Autenticación**: Sistema completo de login/registro utilizando **JWT (JSON Web Tokens)** y contraseñas encriptadas, garantizando la privacidad de los datos.
-- 🎨 **Diseño UX/UI Premium**: Interfaz moderna estilo Glassmorphism sobre fondos oscuros (Deep Slate) y acentos en Azul Premium (#38bdf8), ofreciendo un look and feel envolvente, 100% responsivo y con animaciones sutiles.
+**EnduranceCoach AI** es una plataforma web integral diseñada para revolucionar la gestión deportiva en disciplinas de resistencia (running, triatlón, ciclismo). Esta aplicación combina la potencia de un backend robusto en Java con la inteligencia de modelos generativos (OpenAI) para actuar como un preparador físico virtual. 
+
+El objetivo principal de la aplicación es democratizar el acceso a entrenamientos de élite, generando de forma automática planes de entrenamiento y estrategias de nutrición hiper-personalizados basados en las métricas fisiológicas reales del atleta (FTP, VO2Max, Peso, Frecuencia Cardíaca). Todo ello presentado en una interfaz moderna, segura y orientada a la experiencia de usuario.
 
 ---
 
-## 🛠 Arquitectura y Tecnologías
+## 2. Stack tecnológico utilizado
 
-El sistema sigue una arquitectura monolítica modular completamente desacoplada cliente-servidor:
+El sistema sigue una arquitectura monolítica modular completamente desacoplada (Cliente-Servidor).
 
-### Backend (Servidor)
-- **Lenguaje:** Java 21
-- **Framework Core:** Spring Boot 3.2
-- **Seguridad:** Spring Security + JWT
-- **Persistencia:** Spring Data JPA + Hibernate
-- **Base de Datos:** PostgreSQL
-- **IA Integration:** Spring AI / Cliente HTTP (Conexión a la API de OpenAI)
+**Backend (Servidor & IA):**
+* **Lenguaje:** Java 21
+* **Framework Core:** Spring Boot 3.2.x
+* **Inteligencia Artificial:** Spring AI integrado con la API de OpenAI (GPT).
+* **Seguridad:** Spring Security con JSON Web Tokens (JWT).
+* **Persistencia de Datos:** Spring Data JPA + Hibernate.
+* **Base de Datos:** PostgreSQL (Relacional).
 
-### Frontend (Cliente)
-- **Framework:** Angular 17+ (Basado en *Standalone Components*)
-- **Estilos:** CSS3 nativo avanzado (Flexbox, Grid, Glassmorphism, CSS Variables)
-- **Formularios:** Angular Reactive Forms con validaciones asíncronas
-- **Peticiones HTTP:** `HttpClient` con interceptores JWT para proteger rutas.
-
----
-
-## 📂 Estructura del Proyecto
-
-- `/backend`: Contiene la API RESTful (controladores, servicios, repositorios, configuraciones de seguridad).
-- `/frontend`: Contiene la SPA (Single Page Application) dividida en páginas (Login, Register, Dashboard, Entrenamientos, Nutrición) y servicios.
-- `/docker` (Opcional): Scripts y configuración para despliegue de PostgreSQL y la aplicación en contenedores.
+**Frontend (Cliente):**
+* **Framework:** Angular 17+ (Arquitectura moderna basada en *Standalone Components*).
+* **Estilos y UX/UI:** CSS3 nativo puro implementando diseño *Glassmorphism* (efectos de cristal, desenfoques y variables CSS).
+* **Enrutamiento y Seguridad:** Angular Router protegido mediante AuthGuards.
+* **Peticiones HTTP:** `HttpClient` nativo para consumo de API RESTful.
 
 ---
 
-## 🚀 Instalación y Despliegue Local
+## 3. Información sobre su instalación y ejecución
 
-### Prerrequisitos
-- **Java 21** o superior.
-- **Node.js** (v18+) y NPM.
-- **PostgreSQL** instalado y ejecutándose localmente (o vía Docker).
-- Una **API Key de OpenAI**.
+Para desplegar el proyecto en un entorno local, asegúrate de tener instalados **Java 21**, **Node.js (v18+)** y **PostgreSQL**.
 
-### 1. Configuración de la Base de Datos (PostgreSQL)
-Crea una base de datos local llamada `endurancecoach`:
-```sql
-CREATE DATABASE endurancecoach;
+### 3.1 Configuración de la Base de Datos
+1. Abre tu gestor de PostgreSQL y crea la base de datos:
+   ```sql
+   CREATE DATABASE endurancecoach;
+
 ```
-Actualiza las credenciales en `/backend/src/main/resources/application.properties`:
+
+2. Navega al archivo `/backend/src/main/resources/application.properties` y configura tus credenciales:
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/endurancecoach
-spring.datasource.username=TU_USUARIO
-spring.datasource.password=TU_PASSWORD
+spring.datasource.username=TU_USUARIO_POSTGRES
+spring.datasource.password=TU_PASSWORD_POSTGRES
+
 ```
 
-### 2. Configuración del Backend
-En el archivo `application.properties`, añade tu API Key de OpenAI y el secreto para generar los tokens JWT:
+
+
+### 3.2 Configuración de Variables de Entorno (Tokens e IA)
+
+En el mismo archivo `application.properties`, añade tus claves de seguridad:
+
 ```properties
-jwt.secret=TU_SECRETO_SUPER_SEGURO_PARA_LOS_TOKENS
-openai.api.key=TU_API_KEY_DE_OPENAI
-```
-Para ejecutar el servidor (se levantará en el puerto `:8080`):
-```bash
-cd backend
-./mvnw spring-boot:run
+jwt.secret=TU_SECRETO_SUPER_SEGURO_Y_LARGO_PARA_LOS_TOKENS_JWT
+openai.api.key=sk-TU_API_KEY_DE_OPENAI
+
 ```
 
-### 3. Configuración del Frontend
-Abre una nueva terminal e instala las dependencias de Angular:
+### 3.3 Ejecución del Servidor (Backend)
+
+Abre una terminal en la carpeta `/backend` y ejecuta:
+
 ```bash
-cd frontend
+./mvnw clean spring-boot:run
+
+```
+
+*El servidor se iniciará en `http://localhost:8080` y creará las tablas automáticamente.*
+
+### 3.4 Ejecución del Cliente (Frontend)
+
+Abre una nueva terminal en la carpeta `/frontend`:
+
+```bash
 npm install
+ng serve
+
 ```
-Levanta el servidor de desarrollo (se levantará en el puerto `:4200`):
-```bash
-npm run start
-# O bien: ng serve
-```
-Abre tu navegador en `http://localhost:4200` para empezar a usar la aplicación.
+
+*Accede a la aplicación desde tu navegador en `http://localhost:4200`.*
 
 ---
 
-## 🔌 Principales Endpoints de la API
+## 4. Estructura del proyecto
 
-| Método | Endpoint | Descripción | Requiere Auth |
-|---|---|---|---|
-| `POST` | `/api/auth/register` | Registro de nuevo atleta | ❌ No |
-| `POST` | `/api/auth/login` | Login y retorno del token JWT | ❌ No |
-| `GET`  | `/api/user/me` | Obtiene el perfil (sin contraseña) del atleta autenticado | ✅ Sí |
-| `GET`  | `/api/metrics` | Obtiene las métricas del atleta | ✅ Sí |
-| `POST` | `/api/metrics/save` | Guarda/Actualiza las métricas | ✅ Sí |
-| `GET`  | `/api/dashboard/stats` | Obtiene racha, cantidad de planes y actividad reciente del atleta | ✅ Sí |
-| `POST` | `/api/training/generate` | Genera un plan de IA (depende del objetivo) | ✅ Sí |
-| `POST` | `/api/training/save` | Guarda un plan de entrenamiento en el historial | ✅ Sí |
-| `GET`  | `/api/training/user` | Obtiene el historial de planes de entrenamiento | ✅ Sí |
-| `POST` | `/api/nutrition/generate` | Genera un plan nutricional completo con IA | ✅ Sí |
-| `GET`  | `/api/nutrition` | Obtiene el historial de planes de nutrición | ✅ Sí |
-| `DELETE`| `/api/nutrition/{id}` | Elimina un plan nutricional específico | ✅ Sí |
+El código está organizado siguiendo los principios de Clean Code y separación de responsabilidades:
+
+```text
+EnduranceCoach/
+│
+├── backend/ (Spring Boot)
+│   ├── src/main/java/com/tfm/backend/
+│   │   ├── config/       # Configuración global (CORS, SecurityFilterChain)
+│   │   ├── controller/   # Endpoints de la API RESTful
+│   │   ├── dto/          # Objetos de Transferencia de Datos (Seguridad de payload)
+│   │   ├── model/        # Entidades JPA (Mapeo a base de datos)
+│   │   ├── repository/   # Interfaces de acceso a datos (PostgreSQL)
+│   │   ├── security/     # Filtros JWT y autenticación
+│   │   └── service/      # Lógica de negocio y Prompts de Inteligencia Artificial
+│   └── src/main/resources/
+│       └── application.properties # Variables de entorno
+│
+└── frontend/ (Angular 17)
+    └── src/app/
+        ├── guards/       # Protección de rutas (auth.guard.ts)
+        ├── pages/        # Componentes Standalone (Vistas principales)
+        │   ├── dashboard/   # Panel de control y estadísticas
+        │   ├── login/       # Autenticación
+        │   ├── metrics/     # Gestión de fisiología
+        │   ├── nutrition/   # Generador IA de dietas
+        │   ├── profile/     # Perfil del atleta
+        │   └── training/    # Generador IA de entrenamientos
+        └── services/     # Servicios HTTP y gestión del estado (Token)
+
+```
 
 ---
 
-## 👨‍💻 Acerca del TFM
+## 5. Funcionalidades principales
 
-Este proyecto ha sido desarrollado como Trabajo de Fin de Máster (TFM) focalizado en Aplicaciones y Sistemas Inteligentes. Se ha diseñado cuidando meticulosamente tanto la lógica del negocio, el acoplamiento con grandes modelos de lenguaje (LLM), y las correctas prácticas de la Ingeniería de Software modernas, ofreciendo un producto final que une analítica e impacto visual.
+1. **🔒 Sistema de Autenticación Seguro:** Registro y login de usuarios con contraseñas encriptadas en base de datos. Las rutas del frontend y los endpoints del backend están protegidos mediante validación de Tokens JWT enviados por cabecera HTTP.
+2. **🤖 Motor de IA para Entrenamiento (Core Feature):** A través de Spring AI y un detallado *Prompt Engineering*, la plataforma genera microciclos de entrenamiento adaptados a objetivos específicos (Ej: "Bajar de 3h en Maratón"). Considera carga, descanso y periodización.
+3. **🍏 Estrategia Nutricional Inteligente:** Generación de pautas nutricionales dinámicas. La IA evalúa el peso del atleta y sus objetivos de resistencia para estructurar ingestas de carbohidratos, hidratación y estrategias para el día de la carrera.
+4. **📊 Gestión de Métricas Fisiológicas:** Panel de control (Dashboard) dinámico y sistema de perfiles que permite al atleta registrar y actualizar sus zonas de trabajo (FTP, Frecuencia Cardíaca Máxima y en Reposo). Estos datos alimentan el contexto de la IA para hacer los planes hiper-personalizados.
+5. **📈 Dashboard y Analítica:** Cálculo y renderizado en tiempo real de estadísticas de uso: racha de entrenamientos activos, total de planes generados y un resumen de las actividades más recientes extraídas de la base de datos relacional.
+
+---
+
+---
+
+## 📸 Capturas de Pantalla de la Aplicación
+
+### 🔒 Acceso y Seguridad
+![Pantalla de Login](./docs/images/login.png)
+
+### 📊 Panel de Control (Dashboard)
+![Dashboard del Atleta](./docs/images/dashboard.png)
+
+### 👤 Perfil del Usuario
+![Mi Perfil](./docs/images/perfil.png)
+
+### 🏃 Generador de Entrenamientos (IA)
+![Formulario de Entrenamiento](./docs/images/trainnig_0.png)
+![Plan de Entrenamiento Generado](./docs/images/trainnig_1.png)
+
+### 🍏 Estrategia Nutricional Inteligente (IA)
+![Formulario de Nutrición](./docs/images/nutrition_0.png)
+![Plan Nutricional Generado](./docs/images/nutrition_1.png)
