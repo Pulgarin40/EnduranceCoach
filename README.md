@@ -7,8 +7,8 @@
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
 
 **Proyecto Final de Máster (TFM) - Máster de Desarrollo con IA (BIGSEO)**
-* **Alumno:** [Juan Pablo Bermúdez Pulgarín]
-* **Email:** [jberpu82@gmail.com]
+* **Alumno:** Juan Pablo Bermúdez Pulgarín
+* **Email:** jberpu82@gmail.com
 
 ---
 
