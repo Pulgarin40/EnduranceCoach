@@ -161,3 +161,9 @@ EnduranceCoach/
 ### 🍏 Estrategia Nutricional Inteligente (IA)
 ![Formulario de Nutrición](./docs/images/nutrition_0.png)
 ![Plan Nutricional Generado](./docs/images/nutrition_1.png)
+
+---
+
+## 📽️ Presentación del Proyecto
+
+[👉 Haz clic aquí para ver las Slides de la presentación (PDF)](./presentacion-tfm.pdf)
