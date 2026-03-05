@@ -19,7 +19,7 @@ export interface DashboardStats {
     providedIn: 'root'
 })
 export class DashboardService {
-    private apiUrl = 'http://localhost:8080/api/dashboard/stats';
+    private apiUrl = 'https://endurancecoach-api.onrender.com/api/dashboard/stats';
     private http = inject(HttpClient);
 
     getStats(): Observable<DashboardStats> {

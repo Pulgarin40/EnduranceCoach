@@ -9,7 +9,7 @@ import { Observable, tap } from 'rxjs';
 export class AuthService {
     private http = inject(HttpClient);
     private platformId = inject(PLATFORM_ID);
-    private apiUrl = 'http://localhost:8080/api/auth';
+    private apiUrl = 'https://endurancecoach-api.onrender.com/api/auth'
 
     login(credentials: any): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(

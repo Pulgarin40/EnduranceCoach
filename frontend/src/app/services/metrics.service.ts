@@ -17,7 +17,7 @@ export interface AthleteMetrics {
 })
 export class MetricsService {
     private http = inject(HttpClient);
-    private apiUrl = 'http://localhost:8080/api/metrics';
+    private apiUrl = 'https://endurancecoach-api.onrender.com/api/metrics';
 
     getMetrics(): Observable<AthleteMetrics> {
         return this.http.get<AthleteMetrics>(this.apiUrl);

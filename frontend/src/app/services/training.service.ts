@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class TrainingService {
     private http = inject(HttpClient);
-    private apiUrl = 'http://localhost:8080/api/training/generate';
+    private apiUrl = 'https://endurancecoach-api.onrender.com/api/training/generate';
 
     generatePlan(goal: string, distance: string, weeks: number): Observable<any> {
         const payload = { goal, distance, weeks };
@@ -15,14 +15,14 @@ export class TrainingService {
     }
 
     savePlan(planPayload: any): Observable<any> {
-        return this.http.post<any>('http://localhost:8080/api/training/save', planPayload);
+        return this.http.post<any>('https://endurancecoach-api.onrender.com/api/training/save', planPayload);
     }
 
     getMyPlans(): Observable<any[]> {
-        return this.http.get<any[]>('http://localhost:8080/api/training/my-plans');
+        return this.http.get<any[]>('https://endurancecoach-api.onrender.com/api/training/my-plans');
     }
 
     deletePlan(id: number): Observable<void> {
-        return this.http.delete<void>(`http://localhost:8080/api/training/${id}`);
+        return this.http.delete<void>(`https://endurancecoach-api.onrender.com/api/training/${id}`);
     }
 }

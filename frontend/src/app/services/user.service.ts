@@ -12,7 +12,7 @@ export interface UserMetrics {
     providedIn: 'root'
 })
 export class UserService {
-    private apiUrl = 'http://localhost:8080/api/user/me/metrics';
+    private apiUrl = 'https://endurancecoach-api.onrender.com/api/user/me/metrics';
     private http = inject(HttpClient);
 
     getMetrics(): Observable<UserMetrics> {
