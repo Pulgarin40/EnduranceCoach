@@ -7,12 +7,14 @@ import com.tfm.backend.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = { "http://localhost:4200", "https://endurance-coach.vercel.app" })
 @RequestMapping("/api/user/me")
 @RequiredArgsConstructor
 public class UserController {

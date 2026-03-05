@@ -5,10 +5,12 @@ import com.tfm.backend.services.MetricsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.security.Principal;
 
 @RestController
+@CrossOrigin(origins = { "http://localhost:4200", "https://endurance-coach.vercel.app" })
 @RequestMapping("/api/metrics")
 @RequiredArgsConstructor
 public class MetricsController {
