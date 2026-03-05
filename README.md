@@ -5,6 +5,10 @@
 ![Java](https://img.shields.io/badge/Java-21-007396?style=for-the-badge&logo=java&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+
+🚀 **[¡Prueba la aplicación en vivo haciendo clic aquí!](https://endurance-coach.vercel.app/login)**
 
 **Proyecto Final de Máster (TFM) - Máster de Desarrollo con IA (BIGSEO)**
 * **Alumno:** Juan Pablo Bermúdez Pulgarín
@@ -14,7 +18,7 @@
 
 ## 1. Descripción general del proyecto
 
-**EnduranceCoach AI** es una plataforma web integral diseñada para revolucionar la gestión deportiva en disciplinas de resistencia (running, triatlón, ciclismo). Esta aplicación combina la potencia de un backend robusto en Java con la inteligencia de modelos generativos (OpenAI) para actuar como un preparador físico virtual. 
+**EnduranceCoach AI** es una plataforma web integral diseñada para revolucionar la gestión deportiva en disciplinas de larga distancia y resistencia (running, trail, triatlón, ciclismo). Esta aplicación combina la potencia de un backend robusto en Java con la inteligencia de modelos generativos (OpenAI) para actuar como un preparador físico virtual. 
 
 El objetivo principal de la aplicación es democratizar el acceso a entrenamientos de élite, generando de forma automática planes de entrenamiento y estrategias de nutrición hiper-personalizados basados en las métricas fisiológicas reales del atleta (FTP, VO2Max, Peso, Frecuencia Cardíaca). Todo ello presentado en una interfaz moderna, segura y orientada a la experiencia de usuario.
 
@@ -28,7 +32,7 @@ El sistema sigue una arquitectura monolítica modular completamente desacoplada 
 * **Lenguaje:** Java 21
 * **Framework Core:** Spring Boot 3.2.x
 * **Inteligencia Artificial:** Spring AI integrado con la API de OpenAI (GPT).
-* **Seguridad:** Spring Security con JSON Web Tokens (JWT).
+* **Seguridad:** Spring Security con JSON Web Tokens (JWT) y configuración estricta de CORS.
 * **Persistencia de Datos:** Spring Data JPA + Hibernate.
 * **Base de Datos:** PostgreSQL (Relacional).
 
@@ -40,16 +44,26 @@ El sistema sigue una arquitectura monolítica modular completamente desacoplada 
 
 ---
 
-## 3. Información sobre su instalación y ejecución
+## 3. Arquitectura y Despliegue en la Nube (Producción)
 
-Para desplegar el proyecto en un entorno local, asegúrate de tener instalados **Java 21**, **Node.js (v18+)** y **PostgreSQL**.
 
-### 3.1 Configuración de la Base de Datos
+El proyecto está completamente desplegado en un entorno de producción real, garantizando alta disponibilidad y separación de responsabilidades:
+
+* **Frontend:** Desplegado en **Vercel** (`https://endurance-coach.vercel.app`), con integración continua (CI/CD) directamente desde el repositorio.
+* **Backend:** Alojado en **Render** como un Web Service, compilado mediante un `Dockerfile` multi-stage para optimizar el peso de la imagen de Java.
+* **Base de Datos:** Instancia gestionada de **PostgreSQL** alojada en la misma red interna de Render para asegurar conexiones de latencia ultrabaja (`Internal DB URL`) y máxima seguridad.
+
+---
+
+## 4. Instalación y ejecución en entorno local
+
+Para desplegar el proyecto en un entorno local para desarrollo, asegúrate de tener instalados **Java 21**, **Node.js (v18+)** y **PostgreSQL**.
+
+### 4.1 Configuración de la Base de Datos
 1. Abre tu gestor de PostgreSQL y crea la base de datos:
    ```sql
    CREATE DATABASE endurancecoach;
-
-```
+   
 
 2. Navega al archivo `/backend/src/main/resources/application.properties` y configura tus credenciales:
 ```properties
@@ -107,13 +121,12 @@ EnduranceCoach/
 │   ├── src/main/java/com/tfm/backend/
 │   │   ├── config/       # Configuración global (CORS, SecurityFilterChain)
 │   │   ├── controller/   # Endpoints de la API RESTful
-│   │   ├── dto/          # Objetos de Transferencia de Datos (Seguridad de payload)
+│   │   ├── dto/          # Objetos de Transferencia de Datos
 │   │   ├── model/        # Entidades JPA (Mapeo a base de datos)
 │   │   ├── repository/   # Interfaces de acceso a datos (PostgreSQL)
 │   │   ├── security/     # Filtros JWT y autenticación
 │   │   └── service/      # Lógica de negocio y Prompts de Inteligencia Artificial
-│   └── src/main/resources/
-│       └── application.properties # Variables de entorno
+│   └── Dockerfile        # Configuración multi-stage para despliegue en Render
 │
 └── frontend/ (Angular 17)
     └── src/app/
